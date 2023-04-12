@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
  */
 public class JabileeUI extends javax.swing.JFrame {
     ComboMeals [][] meals = new ComboMeals[3][2];
+    double total = 0;
     
     public JabileeUI() {
         initComponents();
@@ -206,7 +207,7 @@ public class JabileeUI extends javax.swing.JFrame {
         int quantity = 0;
         JOptionPane.showMessageDialog(null, spinner);
         quantity = (Integer) spinner.getValue();
-        
+        total += quantity * meals[x][y].getComboPrice();
         txtReceipt.append(String.format("\n %d * %s     .......... \t %.2f", quantity, meals[x][y].getComboName(), (quantity * meals[x][y].getComboPrice())));
     }
     
@@ -235,6 +236,7 @@ public class JabileeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnItem6ActionPerformed
 
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
+        txtReceipt.append("\n\nTotal: " + total);
         try{
             MessageFormat header = new MessageFormat("Jabilee");
             MessageFormat footer = new MessageFormat("");
