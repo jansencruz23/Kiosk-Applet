@@ -59,13 +59,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="P 125"/>
+            <Property name="text" type="java.lang.String" value="125"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Chicken Joy" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem1ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem1.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem1.setHorizontalTextPosition(SwingConstants.CENTER);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem1.setIcon(getResizedIcon(&quot;/resources/chickenjoy.png&quot;, 70,50));"/>
@@ -79,13 +83,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="P 70"/>
+            <Property name="text" type="java.lang.String" value="70"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Jolly Spaghetty" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem2ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem2.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem2.setHorizontalTextPosition(SwingConstants.CENTER);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem2.setIcon(getResizedIcon(&quot;/resources/spaghetti.png&quot;, 70, 50));"/>
@@ -99,13 +107,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="P 40"/>
+            <Property name="text" type="java.lang.String" value="40"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Yumburger" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem3ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem3.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem3.setHorizontalTextPosition(SwingConstants.CENTER);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem3.setIcon(getResizedIcon(&quot;/resources/yumburger.png&quot;, 70,50));"/>
@@ -119,13 +131,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="P 40"/>
+            <Property name="text" type="java.lang.String" value="40"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Fries" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem4ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem4.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem4.setHorizontalTextPosition(SwingConstants.CENTER);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem4.setIcon(getResizedIcon(&quot;/resources/fries.png&quot;, 70, 50));"/>
@@ -139,13 +155,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="P 35"/>
+            <Property name="text" type="java.lang.String" value="35"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Sundae" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem5ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem5.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem5.setHorizontalTextPosition(SwingConstants.CENTER);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem5.setIcon(getResizedIcon(&quot;/resources/sundae.png&quot;, 55, 50));"/>
@@ -159,13 +179,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="P 15"/>
+            <Property name="text" type="java.lang.String" value="15"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Coke" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem6ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem6.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem6.setHorizontalTextPosition(SwingConstants.CENTER);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem6.setIcon(getResizedIcon(&quot;/resources/coke.png&quot;, 70, 50));"/>
@@ -185,7 +209,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txtReceipt">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -229,6 +253,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDone">
           <Properties>
@@ -248,6 +275,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDoneActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
