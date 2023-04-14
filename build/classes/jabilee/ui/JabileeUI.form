@@ -89,7 +89,7 @@
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="Jolly Spaghetty" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="Jolly Spaghetti" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem2ActionPerformed"/>
@@ -137,7 +137,7 @@
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="Fries" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="French Fries" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem4ActionPerformed"/>
@@ -161,7 +161,7 @@
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="Sundae" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="Sundae    " noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem5ActionPerformed"/>
@@ -185,7 +185,7 @@
                 <LineBorder roundedCorners="true" thickness="3"/>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="Coke" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="Coca Cola" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem6ActionPerformed"/>
@@ -203,7 +203,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="260" y="50" width="290" height="280"/>
+          <AbsoluteConstraints x="260" y="50" width="290" height="240"/>
         </Constraint>
       </Constraints>
 
@@ -211,9 +211,10 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="txtReceipt">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
+            <Property name="columns" type="int" value="2"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Thank you for your purchase!"/>
+            <Property name="tabSize" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Item                                    Qty         Price&#xa;-------------------------------------------------------------------"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -281,6 +282,27 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total: "/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="410" y="300" width="37" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTotal">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="P 0.0"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="440" y="300" width="110" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JLabel" name="lblBg">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
