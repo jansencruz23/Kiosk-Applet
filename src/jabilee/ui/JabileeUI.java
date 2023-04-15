@@ -80,7 +80,7 @@ public class JabileeUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtReceipt);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(260, 50, 290, 240);
+        jScrollPane1.setBounds(260, 40, 290, 290);
 
         panelActions.setOpaque(false);
         panelActions.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
@@ -110,33 +110,34 @@ public class JabileeUI extends javax.swing.JFrame {
         panelActions.add(btnDone);
 
         getContentPane().add(panelActions);
-        panelActions.setBounds(260, 340, 290, 50);
+        panelActions.setBounds(260, 370, 290, 50);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(410, 300, 37, 16);
+        jLabel1.setBounds(410, 340, 37, 16);
 
         lblTotal.setForeground(new java.awt.Color(255, 255, 255));
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("P 0.0");
         getContentPane().add(lblTotal);
-        lblTotal.setBounds(440, 300, 110, 16);
+        lblTotal.setBounds(440, 340, 110, 16);
 
         scrollPane.getViewport().setOpaque(false);
-        scrollPane.setBorder(null);
+        scrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         scrollPane.setOpaque(false);
 
+        panelItems.setBackground(new java.awt.Color(102, 0, 0));
+        panelItems.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         panelItems.setAutoscrolls(true);
         panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
         panelItems.setName("add"); // NOI18N
-        panelItems.setOpaque(false);
         panelItems.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
 
         btnItem1.setIcon(getResizedIcon("/resources/chickenjoy.png", 70,50));
         btnItem1.setBackground(new java.awt.Color(255, 204, 51));
         btnItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnItem1.setText("125");
+        btnItem1.setText("125.0");
         btnItem1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem1.setName("Chicken Joy"); // NOI18N
         btnItem1.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -151,7 +152,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnItem2.setIcon(getResizedIcon("/resources/spaghetti.png", 70, 50));
         btnItem2.setBackground(new java.awt.Color(255, 204, 51));
         btnItem2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnItem2.setText("70");
+        btnItem2.setText("70.0");
         btnItem2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem2.setName("Jolly Spaghetti"); // NOI18N
         btnItem2.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -166,7 +167,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnItem3.setIcon(getResizedIcon("/resources/yumburger.png", 70,50));
         btnItem3.setBackground(new java.awt.Color(255, 204, 51));
         btnItem3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnItem3.setText("40");
+        btnItem3.setText("40.0");
         btnItem3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem3.setName("Yumburger"); // NOI18N
         btnItem3.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -181,7 +182,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnItem4.setIcon(getResizedIcon("/resources/fries.png", 70, 50));
         btnItem4.setBackground(new java.awt.Color(255, 204, 51));
         btnItem4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnItem4.setText("40");
+        btnItem4.setText("40.0");
         btnItem4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem4.setName("French Fries"); // NOI18N
         btnItem4.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -196,7 +197,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnItem5.setIcon(getResizedIcon("/resources/sundae.png", 55, 50));
         btnItem5.setBackground(new java.awt.Color(255, 204, 51));
         btnItem5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnItem5.setText("35");
+        btnItem5.setText("35.0");
         btnItem5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem5.setName("Sundae    "); // NOI18N
         btnItem5.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -211,7 +212,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnItem6.setIcon(getResizedIcon("/resources/coke.png", 70, 50));
         btnItem6.setBackground(new java.awt.Color(255, 204, 51));
         btnItem6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnItem6.setText("15");
+        btnItem6.setText("15.0");
         btnItem6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem6.setName("Coca Cola"); // NOI18N
         btnItem6.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -223,8 +224,11 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem6);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("+");
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jButton1.setName("+"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,7 +262,7 @@ public class JabileeUI extends javax.swing.JFrame {
         }
     }
     
-    private void updateMeals(){
+    private void updateMeals() {
         
         for(int i = meals.size() - 1; i >= meals.size() - addedMeals; i--) {
             
@@ -266,7 +270,7 @@ public class JabileeUI extends javax.swing.JFrame {
             final int index = i;
             
             ImageIcon icon = getResizedIcon(meals.get(index).getIcon(), 70, 50);
-            JButton btn = new JButton(meals.get(i).getComboName());
+            JButton btn = new JButton(meals.get(i).getComboPrice() + "");
             
             btn.setIcon(icon);
             formatButtonText(btn);
@@ -299,7 +303,7 @@ public class JabileeUI extends javax.swing.JFrame {
         }
     }
     
-    public void updateTotal(double subTotal){
+    public void updateTotal(double subTotal) {
         
         total += subTotal;
         System.out.println(total); 
