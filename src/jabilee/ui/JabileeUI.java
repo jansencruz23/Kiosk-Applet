@@ -1,5 +1,7 @@
 package jabilee.ui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
@@ -11,6 +13,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -19,9 +22,11 @@ import javax.swing.SwingConstants;
 public class JabileeUI extends javax.swing.JFrame {
     
     final String format = "\n%-20s \t%-10d \t%.2f";
-    ComboMeals [][] meals = new ComboMeals[3][2];
-    ArrayList<ComboMeals> itemsBought = new ArrayList<>();
+    ArrayList<ComboMeals> meals = new ArrayList<>();
+    ArrayList<ComboMeals> mealsBought = new ArrayList<>();
     double total = 0;
+    int btnIndex = 0;
+    int addedMeals;
     
     public JabileeUI() {
         
@@ -29,18 +34,21 @@ public class JabileeUI extends javax.swing.JFrame {
         initMeals();
         setLocationRelativeTo(null);
     }
+    
+    public JabileeUI(ArrayList<ComboMeals> meals, int numAddedMeals) {
+        
+        this.addedMeals = numAddedMeals;
+        this.meals = meals;
+        
+        initComponents();
+        updateMeals();
+        setLocationRelativeTo(null);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelItems = new javax.swing.JPanel();
-        btnItem1 = new javax.swing.JButton();
-        btnItem2 = new javax.swing.JButton();
-        btnItem3 = new javax.swing.JButton();
-        btnItem4 = new javax.swing.JButton();
-        btnItem5 = new javax.swing.JButton();
-        btnItem6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReceipt = new javax.swing.JTextArea();
         panelActions = new javax.swing.JPanel();
@@ -48,6 +56,15 @@ public class JabileeUI extends javax.swing.JFrame {
         btnDone = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
+        scrollPane = new javax.swing.JScrollPane();
+        panelItems = new javax.swing.JPanel();
+        btnItem1 = new javax.swing.JButton();
+        btnItem2 = new javax.swing.JButton();
+        btnItem3 = new javax.swing.JButton();
+        btnItem4 = new javax.swing.JButton();
+        btnItem5 = new javax.swing.JButton();
+        btnItem6 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,9 +72,66 @@ public class JabileeUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(550, 600));
         getContentPane().setLayout(null);
 
+        txtReceipt.setEditable(false);
+        txtReceipt.setColumns(2);
+        txtReceipt.setRows(5);
+        txtReceipt.setTabSize(4);
+        txtReceipt.setText("Item                                    Qty         Price\n-------------------------------------------------------------------");
+        jScrollPane1.setViewportView(txtReceipt);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(260, 50, 290, 240);
+
+        panelActions.setOpaque(false);
+        panelActions.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        btnCancel.setBackground(new java.awt.Color(255, 51, 51));
+        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setText("CANCEL ORDER");
+        btnCancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        panelActions.add(btnCancel);
+
+        btnDone.setBackground(new java.awt.Color(255, 153, 0));
+        btnDone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDone.setForeground(new java.awt.Color(255, 255, 255));
+        btnDone.setText("DONE");
+        btnDone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneActionPerformed(evt);
+            }
+        });
+        panelActions.add(btnDone);
+
+        getContentPane().add(panelActions);
+        panelActions.setBounds(260, 340, 290, 50);
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Total: ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(410, 300, 37, 16);
+
+        lblTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotal.setText("P 0.0");
+        getContentPane().add(lblTotal);
+        lblTotal.setBounds(440, 300, 110, 16);
+
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+        scrollPane.setOpaque(false);
+
+        panelItems.setAutoscrolls(true);
         panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
+        panelItems.setName("add"); // NOI18N
         panelItems.setOpaque(false);
-        panelItems.setLayout(new java.awt.GridLayout(3, 2, 5, 5));
+        panelItems.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
 
         btnItem1.setIcon(getResizedIcon("/resources/chickenjoy.png", 70,50));
         btnItem1.setBackground(new java.awt.Color(255, 204, 51));
@@ -149,56 +223,20 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem6);
 
-        getContentPane().add(panelItems);
-        panelItems.setBounds(30, 50, 210, 340);
-
-        txtReceipt.setColumns(2);
-        txtReceipt.setRows(5);
-        txtReceipt.setTabSize(4);
-        txtReceipt.setText("Item                                    Qty         Price\n-------------------------------------------------------------------");
-        jScrollPane1.setViewportView(txtReceipt);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(260, 50, 290, 240);
-
-        panelActions.setOpaque(false);
-        panelActions.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
-
-        btnCancel.setBackground(new java.awt.Color(255, 51, 51));
-        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel.setText("CANCEL ORDER");
-        btnCancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton1.setText("+");
+        jButton1.setName("+"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        panelActions.add(btnCancel);
+        panelItems.add(jButton1);
 
-        btnDone.setBackground(new java.awt.Color(255, 153, 0));
-        btnDone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDone.setForeground(new java.awt.Color(255, 255, 255));
-        btnDone.setText("DONE");
-        btnDone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnDone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoneActionPerformed(evt);
-            }
-        });
-        panelActions.add(btnDone);
+        scrollPane.setViewportView(panelItems);
 
-        getContentPane().add(panelActions);
-        panelActions.setBounds(260, 340, 290, 50);
-
-        jLabel1.setText("Total: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(410, 300, 37, 16);
-
-        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotal.setText("P 0.0");
-        getContentPane().add(lblTotal);
-        lblTotal.setBounds(440, 300, 110, 16);
+        getContentPane().add(scrollPane);
+        scrollPane.setBounds(35, 42, 210, 380);
 
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bg.jpg"))); // NOI18N
         getContentPane().add(lblBg);
@@ -209,37 +247,55 @@ public class JabileeUI extends javax.swing.JFrame {
 
     private void initMeals() {
         
-        int btnIndex = 0;
-        
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 2; j++) {
+        for(int i = 0; i < panelItems.getComponentCount(); i++) {
                 
-                // Initialize index coordinates for the item buttons
-                JButton btn = (JButton) panelItems.getComponent(btnIndex++);
-                meals[i][j] = new ComboMeals(btn.getName(), Double.parseDouble(btn.getText()));
-            }
+            // Initialize index coordinates for the item buttons
+            JButton btn = (JButton) panelItems.getComponent(btnIndex++);
+            
+            if(isAddMealButton(btn)) continue;
+            
+            meals.add(new ComboMeals(btn.getName(), Double.parseDouble(btn.getText())));
+        }
     }
     
-    private void clicked(int x, int y, JButton btn) {
+    private void updateMeals(){
         
-        ComboMeals item = meals[x][y];
-        String itemName = item.getComboName();
-        double itemPrice = item.getComboPrice();
+        for(int i = meals.size() - 1; i >= meals.size() - addedMeals; i--) {
+            
+            // Use final int for lambda expressions (not final will result to error)
+            final int index = i;
+            
+            ImageIcon icon = getResizedIcon(meals.get(index).getIcon(), 70, 50);
+            JButton btn = new JButton(meals.get(i).getComboName());
+            
+            btn.setIcon(icon);
+            formatButtonText(btn);
+            
+            btn.addActionListener(e -> clicked(index, btn));
+            panelItems.add(btn, panelItems.getComponentCount() - 1);
+        }
+    }
+    
+    private void clicked(int index, JButton btn) {
+        
+        ComboMeals meal = meals.get(index);
+        String mealName = meal.getComboName();
+        double mealPrice = meal.getComboPrice();
                 
         // Gets the value from the spinner
-        int quantity = getOrderQuantity(itemName, btn);
-        double subTotal = quantity * itemPrice;
+        int quantity = getOrderQuantity(mealName, btn);
+        double subTotal = quantity * mealPrice;
         
         updateTotal(subTotal);
         
         // Only add quantity if the item is already existing
-        if(isItemExisting(item)) {
-            addQuantityToExistingItem(item, quantity);
+        if(isMealExisting(meal)) {
+            addQuantityToExistingItem(meal, quantity);
         }
         else {
-            item.addQuantity(quantity);
-            addToReceipt(itemName, quantity, subTotal);
-            addToItemsBought(item);
+            meal.addQuantity(quantity);
+            addToReceipt(mealName, quantity, subTotal);
+            addToMealBought(meal);
         }
     }
     
@@ -247,10 +303,15 @@ public class JabileeUI extends javax.swing.JFrame {
         
         total += subTotal;
         System.out.println(total); 
-       lblTotal.setText("P "+ total);
+        lblTotal.setText("P "+ total);
     }
     
-    private int getOrderQuantity(String itemName, JButton btn){
+    public void addNumberOfAddedMeals() {
+        
+        addedMeals++;
+    }
+    
+    private int getOrderQuantity(String mealName, JButton btn){
         
         final int MINIMUM_ORDER_VALUE = 1;
         final int MAXIMUM_ORDER_VALUE = 30;
@@ -264,7 +325,7 @@ public class JabileeUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(
                 null, 
                 spinner, 
-                itemName, 
+                mealName, 
                 JOptionPane.INFORMATION_MESSAGE, 
                 btn.getIcon());
         
@@ -279,43 +340,48 @@ public class JabileeUI extends javax.swing.JFrame {
         txt.setEditable(true);
     }
     
-    private void addQuantityToExistingItem(ComboMeals item, int quantity){
+    private void addQuantityToExistingItem(ComboMeals meal, int quantity){
         
         // Get item details and calculate values
-        String itemName = item.getComboName();
-        int itemQuantity = item.getQuantity();
-        double itemPrice = item.getComboPrice();
-        double subTotal = itemQuantity * item.getComboPrice();
-        int newItemQuantity = itemQuantity + quantity;
+        String mealName = meal.getComboName();
+        int mealQuantity = meal.getQuantity();
+        double mealPrice = meal.getComboPrice();
+        double subTotal = mealQuantity * meal.getComboPrice();
+        int newMealQuantity = mealQuantity + quantity;
         
-        String oldItem = String.format(format,itemName, itemQuantity, subTotal);
-        String newItem = String.format(format, itemName, newItemQuantity, (newItemQuantity * itemPrice));
+        String oldItem = String.format(format,mealName, mealQuantity, subTotal);
+        String newItem = String.format(format, mealName, newMealQuantity, (newMealQuantity * mealPrice));
                 
         // Replace the old receipt to the updated receipt with updated quantity and subtotal
         String copiedReceipt = txtReceipt.getText();
         String newReceipt = copiedReceipt.replace(oldItem, newItem);
         
-        item.addQuantity(quantity);
+        meal.addQuantity(quantity);
         txtReceipt.setText(newReceipt);
     }
     
-    private void addToReceipt(String itemName, int quantity, double subTotal) {
+    private void addToReceipt(String mealName, int quantity, double subTotal) {
         
-        String purchase = String.format(format, itemName, quantity, subTotal);
+        String purchase = String.format(format, mealName, quantity, subTotal);
         txtReceipt.append(purchase);
     }
     
-    private void addToItemsBought(ComboMeals item){
+    private void addToMealBought(ComboMeals meal){
         
-        itemsBought.add(item);
+        mealsBought.add(meal);
     }
     
-    private boolean isItemExisting(ComboMeals item) {
+    private boolean isMealExisting(ComboMeals meal) {
         
-        if(itemsBought.contains(item))
+        if(mealsBought.contains(meal))
             return true;
         
         return false;
+    }
+    
+    private boolean isAddMealButton(JButton btn){
+        
+        return btn.getName().equals("+");
     }
     
     private void printReceipt() {
@@ -371,14 +437,30 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private void resetItemsQuantity() {
         
-        itemsBought.forEach(i -> i.resetQuantity());
+        mealsBought.forEach(i -> i.resetQuantity());
     }
     
     private void resetItemsBought() {
         
-        itemsBought.clear();
+        mealsBought.clear();
     }
     
+    public void refreshWindow() {
+     
+        new JabileeUI().setVisible(true);
+        this.dispose();
+    }
+    
+    private void formatButtonText(JButton btn) {
+        
+        btn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        btn.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        btn.setBackground(new Color(255,204,51));
+        btn.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+        btn.setFont(new Font("Segoe UI", 1, 14));
+    }
+        
     public ImageIcon getResizedIcon(String path, int width, int height) {
         
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(path));
@@ -388,28 +470,36 @@ public class JabileeUI extends javax.swing.JFrame {
         return imgIcon;
     }
     
+    public ImageIcon getResizedIcon(ImageIcon icon, int width, int height) {
+        
+        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon imgIcon = new ImageIcon(img);
+        
+        return imgIcon;
+    }
+    
     private void btnItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem1ActionPerformed
-        clicked(0,0, btnItem1);
+        clicked(0, btnItem1);
     }//GEN-LAST:event_btnItem1ActionPerformed
 
     private void btnItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem2ActionPerformed
-        clicked(0,1, btnItem2);
+        clicked(1, btnItem2);
     }//GEN-LAST:event_btnItem2ActionPerformed
 
     private void btnItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem3ActionPerformed
-        clicked(1,0, btnItem3);
+        clicked(2, btnItem3);
     }//GEN-LAST:event_btnItem3ActionPerformed
 
     private void btnItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem4ActionPerformed
-        clicked(1,1, btnItem4);
+        clicked(3, btnItem4);
     }//GEN-LAST:event_btnItem4ActionPerformed
 
     private void btnItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem5ActionPerformed
-        clicked(2,0, btnItem5);
+        clicked(4, btnItem5);
     }//GEN-LAST:event_btnItem5ActionPerformed
 
     private void btnItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem6ActionPerformed
-       clicked(2,1, btnItem6);
+       clicked(5, btnItem6);
     }//GEN-LAST:event_btnItem6ActionPerformed
 
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
@@ -419,6 +509,10 @@ public class JabileeUI extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         clearReceipt();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new CreateItem(meals, this, addedMeals).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -458,12 +552,14 @@ public class JabileeUI extends javax.swing.JFrame {
     private javax.swing.JButton btnItem4;
     private javax.swing.JButton btnItem5;
     private javax.swing.JButton btnItem6;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel panelActions;
     private javax.swing.JPanel panelItems;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTextArea txtReceipt;
     // End of variables declaration//GEN-END:variables
 }
