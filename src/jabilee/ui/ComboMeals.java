@@ -45,7 +45,7 @@ public class ComboMeals {
         this.quantity += quantity;
     }
     
-    public void resetQuantity(){
+    public void resetQuantity() {
         quantity = 0;
     }
 }

@@ -1,17 +1,20 @@
 package jabilee.ui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class Order extends javax.swing.JPanel {
 
+    private JabileeUI window;
     private ComboMeals meal;
     private JButton btn;
     
-    public Order(ComboMeals meal, JButton btn) {
+    public Order(ComboMeals meal, JButton btn, JabileeUI window) {
         
         this.meal = meal;
         this.btn = btn;
+        this.window = window;
         
         initComponents();
         initOrder();
@@ -60,10 +63,15 @@ public class Order extends javax.swing.JPanel {
         lblName.setBounds(80, 16, 150, 20);
 
         btnRemove.setText("-");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
         add(btnRemove);
         btnRemove.setBounds(190, 20, 40, 30);
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void initOrder() {
         
         setOrderName(meal.getComboName());
@@ -95,6 +103,27 @@ public class Order extends javax.swing.JPanel {
         
         return lblQuantity;
     }
+    
+    public int getOrderQuantity() {
+        
+        return meal.getQuantity();
+    }
+    
+    public double getOrderPrice() {
+        
+        return meal.getComboPrice();
+    }
+    
+    public double getOrderSubTotal() {
+        
+        return getOrderPrice() * getOrderQuantity();
+    }
+       
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+
+        window.removeFromOrders(this);
+        meal.resetQuantity();
+    }//GEN-LAST:event_btnRemoveActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRemove;

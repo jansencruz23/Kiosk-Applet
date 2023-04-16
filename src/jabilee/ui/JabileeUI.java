@@ -275,7 +275,7 @@ public class JabileeUI extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnCancel);
-        btnCancel.setBounds(180, 20, 70, 30);
+        btnCancel.setBounds(150, 20, 100, 30);
 
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 0, 270, 70);
@@ -337,10 +337,11 @@ public class JabileeUI extends javax.swing.JFrame {
         int quantity = getOrderQuantity(mealName, btn);
         double subTotal = quantity * mealPrice;
         
-        updateTotal(subTotal);
+        addToTotal(subTotal);
         
         // Only add quantity if the item is already existing
         if(isMealExisting(meal)) {
+            System.out.println("exisitng");
             addQuantityToExistingItem(meal, quantity);
             updateOrderQuantity(meal);
         }
@@ -354,12 +355,33 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private void addToOrder(ComboMeals meal, JButton btn) {
         
-        Order order = new Order(meal, btn);
+        Order order = new Order(meal, btn, this);
         
         panelOrder.add(order);
         orders.add(order);
     }
     
+    public void removeFromOrders(Order order) {
+        
+        orders.removeIf(o -> o.getOrderName().equals(order.getOrderName()));
+        orders.forEach(n -> System.out.println(n.getOrderName()));
+        panelOrder.remove(order);
+        panelOrder.repaint();
+        
+        removeFromReceipt(order);
+        subtractFromTotal(order.getOrderPrice() * order.getOrderQuantity());
+    }
+    
+    private void removeFromReceipt(Order order) {
+     
+        mealsBought.removeIf(m -> m.getComboName().equals(order.getOrderName()));
+        //mealsBought.forEach(n -> System.out.println(n.getComboName()));
+        String oldReceipt = txtReceipt.getText();
+        String newReceipt = oldReceipt.replace(String.format(format, order.getOrderName(), order.getOrderQuantity(), order.getOrderSubTotal()), "");
+        
+        txtReceipt.setText(newReceipt);
+    }
+        
     private void updateOrderQuantity(ComboMeals meal) {
      
         Order order = getExistingOrder(meal.getComboName());
@@ -375,16 +397,21 @@ public class JabileeUI extends javax.swing.JFrame {
               .orElse(null);
     }
     
-    public void updateTotal(double subTotal) {
+    public void addToTotal(double subTotal) {
         
         total += subTotal;
-        System.out.println(total); 
         lblTotal.setText("P "+ total);
     }
     
     public void addNumberOfAddedMeals() {
         
         addedMeals++;
+    }
+    
+    public void subtractFromTotal(double subTotal) {
+        
+        total -= subTotal;
+        lblTotal.setText("P "+ total);
     }
     
     private int getOrderQuantity(String mealName, JButton btn){
