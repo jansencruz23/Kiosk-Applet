@@ -1,5 +1,6 @@
 package jabilee.ui;
 
+import component.WrapLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -24,6 +25,7 @@ public class JabileeUI extends javax.swing.JFrame {
     final String format = "\n%-20s \t%-10d \t%.2f";
     ArrayList<ComboMeals> meals = new ArrayList<>();
     ArrayList<ComboMeals> mealsBought = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<>();
     double total = 0;
     int btnIndex = 0;
     int addedMeals;
@@ -51,11 +53,7 @@ public class JabileeUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReceipt = new javax.swing.JTextArea();
-        panelActions = new javax.swing.JPanel();
-        btnCancel = new javax.swing.JButton();
-        btnDone = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        lblTotal = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         panelItems = new javax.swing.JPanel();
         btnItem1 = new javax.swing.JButton();
@@ -65,10 +63,20 @@ public class JabileeUI extends javax.swing.JFrame {
         btnItem5 = new javax.swing.JButton();
         btnItem6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnDone = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelOrder = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btnCancel = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(600, 500));
+        setMinimumSize(new java.awt.Dimension(850, 700));
         setSize(new java.awt.Dimension(550, 600));
         getContentPane().setLayout(null);
 
@@ -80,48 +88,10 @@ public class JabileeUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtReceipt);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(260, 40, 290, 290);
+        jScrollPane1.setBounds(140, 490, 290, 290);
 
-        panelActions.setOpaque(false);
-        panelActions.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
-
-        btnCancel.setBackground(new java.awt.Color(255, 51, 51));
-        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel.setText("CANCEL ORDER");
-        btnCancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-        panelActions.add(btnCancel);
-
-        btnDone.setBackground(new java.awt.Color(255, 153, 0));
-        btnDone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDone.setForeground(new java.awt.Color(255, 255, 255));
-        btnDone.setText("DONE");
-        btnDone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnDone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoneActionPerformed(evt);
-            }
-        });
-        panelActions.add(btnDone);
-
-        getContentPane().add(panelActions);
-        panelActions.setBounds(260, 370, 290, 50);
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Total: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(410, 340, 37, 16);
-
-        lblTotal.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotal.setText("P 0.0");
-        getContentPane().add(lblTotal);
-        lblTotal.setBounds(440, 340, 110, 16);
+        jPanel1.setBackground(new java.awt.Color(254, 241, 225));
+        jPanel1.setLayout(null);
 
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -132,7 +102,7 @@ public class JabileeUI extends javax.swing.JFrame {
         panelItems.setAutoscrolls(true);
         panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
         panelItems.setName("add"); // NOI18N
-        panelItems.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
+        panelItems.setLayout(new java.awt.GridLayout(0, 3, 5, 5));
 
         btnItem1.setIcon(getResizedIcon("/resources/chickenjoy.png", 70,50));
         btnItem1.setBackground(new java.awt.Color(255, 204, 51));
@@ -239,12 +209,89 @@ public class JabileeUI extends javax.swing.JFrame {
 
         scrollPane.setViewportView(panelItems);
 
-        getContentPane().add(scrollPane);
-        scrollPane.setBounds(35, 42, 210, 380);
+        jPanel1.add(scrollPane);
+        scrollPane.setBounds(20, 90, 440, 390);
 
-        lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bg.jpg"))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel2.setText("Jabilee");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(30, 10, 280, 50);
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(0, 0, 490, 70);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(30, 30, 490, 510);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(null);
+
+        btnDone.setBackground(new java.awt.Color(255, 153, 0));
+        btnDone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDone.setForeground(new java.awt.Color(255, 255, 255));
+        btnDone.setText("DONE");
+        btnDone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnDone);
+        btnDone.setBounds(30, 440, 210, 50);
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Total: ");
+        jPanel3.add(jLabel1);
+        jLabel1.setBounds(80, 410, 37, 16);
+
+        jScrollPane2.setBackground(new java.awt.Color(153, 0, 0));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        panelOrder.setBackground(new java.awt.Color(204, 204, 204));
+        /*
+        panelOrder.setLayout(null);
+        */
+        panelOrder.setLayout(new WrapLayout(WrapLayout.LEADING));
+        jScrollPane2.setViewportView(panelOrder);
+
+        jPanel3.add(jScrollPane2);
+        jScrollPane2.setBounds(0, 70, 270, 330);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(null);
+
+        btnCancel.setBackground(new java.awt.Color(255, 51, 51));
+        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setText("CANCEL ORDER");
+        btnCancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnCancel);
+        btnCancel.setBounds(180, 20, 70, 30);
+
+        jPanel3.add(jPanel4);
+        jPanel4.setBounds(0, 0, 270, 70);
+
+        lblTotal.setForeground(new java.awt.Color(0, 0, 0));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotal.setText("P 0.0");
+        jPanel3.add(lblTotal);
+        lblTotal.setBounds(190, 410, 25, 16);
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(530, 30, 270, 510);
+
+        lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bg3.jpg"))); // NOI18N
         getContentPane().add(lblBg);
-        lblBg.setBounds(-10, -20, 600, 510);
+        lblBg.setBounds(-10, -20, 830, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,12 +342,33 @@ public class JabileeUI extends javax.swing.JFrame {
         // Only add quantity if the item is already existing
         if(isMealExisting(meal)) {
             addQuantityToExistingItem(meal, quantity);
+            updateOrderQuantity(mealName);
         }
         else {
             meal.addQuantity(quantity);
             addToReceipt(mealName, quantity, subTotal);
             addToMealBought(meal);
+            addToOrder(meal, btn);
         }
+    }
+    
+    private void addToOrder(ComboMeals meal, JButton btn) {
+        
+        Order order = new Order(meal, btn);
+        
+        panelOrder.add(order);
+        orders.add(order);
+    }
+    
+    private void updateOrderQuantity(String name) {
+     
+      //  Order order = getExistingOrder(name);
+        
+    }
+    
+    private void getExistingOrder(String name) {
+        
+        
     }
     
     public void updateTotal(double subTotal) {
@@ -558,11 +626,17 @@ public class JabileeUI extends javax.swing.JFrame {
     private javax.swing.JButton btnItem6;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblTotal;
-    private javax.swing.JPanel panelActions;
     private javax.swing.JPanel panelItems;
+    private javax.swing.JPanel panelOrder;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTextArea txtReceipt;
     // End of variables declaration//GEN-END:variables
