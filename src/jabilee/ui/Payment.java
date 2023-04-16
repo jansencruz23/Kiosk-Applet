@@ -1,5 +1,6 @@
 package jabilee.ui;
 
+import font.Fonts;
 import java.awt.Component;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
@@ -78,7 +79,8 @@ public class Payment extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(249, 243, 243));
 
         jLabel3.setBackground(new java.awt.Color(55, 55, 55));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setFont(Fonts.getJelleeFont(18)
+        );
         jLabel3.setText("Receipt");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -107,7 +109,8 @@ public class Payment extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(249, 243, 243));
 
         jLabel4.setBackground(new java.awt.Color(55, 55, 55));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setFont(Fonts.getJelleeFont(18)
+        );
         jLabel4.setText("Payment");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -130,17 +133,24 @@ public class Payment extends javax.swing.JFrame {
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 0, 280, 45);
 
+        jLabel1.setFont(Fonts.getJelleeFont(18)
+        );
         jLabel1.setText("Total");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(20, 70, 70, 30);
+        jLabel1.setBounds(30, 90, 70, 30);
 
+        jLabel2.setFont(Fonts.getJelleeFont(20)
+        );
         jLabel2.setText("P");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(130, 80, 20, 16);
+        jLabel2.setBounds(120, 90, 30, 30);
 
+        lblTotal.setFont(Fonts.getJelleeFont(20)
+        );
+        lblTotal.setForeground(new java.awt.Color(255, 0, 0));
         lblTotal.setText("000");
         jPanel3.add(lblTotal);
-        lblTotal.setBounds(170, 80, 70, 16);
+        lblTotal.setBounds(170, 90, 70, 30);
 
         txtNum.setEditable(false);
         jPanel3.add(txtNum);
@@ -153,45 +163,71 @@ public class Payment extends javax.swing.JFrame {
         panelNum.setOpaque(false);
         panelNum.setLayout(new java.awt.GridLayout(4, 3, 1, 1));
 
+        btn7.setFont(Fonts.getJelleeFont(14)
+        );
         btn7.setText("7");
         panelNum.add(btn7);
 
+        btn8.setFont(Fonts.getJelleeFont(14)
+        );
         btn8.setText("8");
         panelNum.add(btn8);
 
+        btn9.setFont(Fonts.getJelleeFont(14)
+        );
         btn9.setText("9");
         panelNum.add(btn9);
 
+        btn4.setFont(Fonts.getJelleeFont(14)
+        );
         btn4.setText("4");
         panelNum.add(btn4);
 
+        btn5.setFont(Fonts.getJelleeFont(14)
+        );
         btn5.setText("5");
         panelNum.add(btn5);
 
+        btn6.setFont(Fonts.getJelleeFont(14)
+        );
         btn6.setText("6");
         panelNum.add(btn6);
 
+        btn1.setFont(Fonts.getJelleeFont(14)
+        );
         btn1.setText("1");
         panelNum.add(btn1);
 
+        btn2.setFont(Fonts.getJelleeFont(14)
+        );
         btn2.setText("2");
         panelNum.add(btn2);
 
+        btn3.setFont(Fonts.getJelleeFont(14)
+        );
         btn3.setText("3");
         panelNum.add(btn3);
 
+        btnPeriod.setFont(Fonts.getJelleeFont(14)
+        );
         btnPeriod.setText(".");
         panelNum.add(btnPeriod);
 
+        btn0.setFont(Fonts.getJelleeFont(14)
+        );
         btn0.setText("0");
         panelNum.add(btn0);
 
+        btn00.setFont(Fonts.getJelleeFont(14)
+        );
         btn00.setText("00");
         panelNum.add(btn00);
 
         jPanel3.add(panelNum);
         panelNum.setBounds(30, 190, 220, 210);
 
+        btnPay.setFont(Fonts.getJelleeFont(18)
+        );
         btnPay.setText("PAY");
         btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,6 +322,9 @@ public class Payment extends javax.swing.JFrame {
                 
                 window.clearReceipt();
                 window.clearTotal();
+                window.clearOrders();
+                
+                this.dispose();
             }
             else
                 JOptionPane.showMessageDialog(

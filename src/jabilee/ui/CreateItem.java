@@ -1,5 +1,6 @@
 package jabilee.ui;
 
+import font.Fonts;
 import component.CirclePanel;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -18,15 +19,15 @@ public class CreateItem extends javax.swing.JFrame {
     final int MIN_COMBONAME_LENGTH = 8;
     final int MIN_COMBOPRICE = 0;
     
-    private ArrayList<ComboMeals> _meals;
-    private JabileeUI _window;
+    private ArrayList<ComboMeals> meals;
+    private JabileeUI window;
     private int addedMeals = 0;
     ImageIcon icon;
     
     public CreateItem(ArrayList<ComboMeals> meals, JabileeUI window, int addedMeals) {
         
-        _meals = meals;
-        _window = window;
+        this.meals = meals;
+        this.window = window;
         this.addedMeals = addedMeals;
         
         initComponents();
@@ -63,6 +64,9 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setLayout(null);
 
+        txtName.setBackground(new java.awt.Color(255, 255, 255));
+        txtName.setFont(Fonts.getJelleeFont(12)
+        );
         txtName.setForeground(new java.awt.Color(102, 102, 102));
         txtName.setText("Name");
         txtName.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,6 +77,7 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel1.add(txtName);
         txtName.setBounds(152, 50, 146, 32);
 
+        txtPrice.setFont(Fonts.getJelleeFont(12));
         txtPrice.setForeground(new java.awt.Color(102, 102, 102));
         txtPrice.setText("Price");
         txtPrice.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,10 +88,11 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel1.add(txtPrice);
         txtPrice.setBounds(210, 95, 90, 31);
 
-        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(255, 153, 0));
+        btnCancel.setFont(Fonts.getJelleeFont(14)
+        );
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("CANCEL");
-        btnCancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        btnCancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         btnCancel.setContentAreaFilled(false);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,9 +102,10 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel1.add(btnCancel);
         btnCancel.setBounds(30, 165, 130, 34);
 
-        btnDone.setBackground(new java.awt.Color(255, 153, 0));
-        btnDone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDone.setForeground(new java.awt.Color(48, 48, 48));
+        btnDone.setBackground(new java.awt.Color(204, 0, 0));
+        btnDone.setFont(Fonts.getJelleeFont(14)
+        );
+        btnDone.setForeground(new java.awt.Color(255, 255, 255));
         btnDone.setText("DONE");
         btnDone.setBorder(null);
         btnDone.setBorderPainted(false);
@@ -110,7 +117,9 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel1.add(btnDone);
         btnDone.setBounds(170, 162, 130, 40);
 
-        btnIcon.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnIcon.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon.setFont(Fonts.getJelleeFont(36)
+        );
         btnIcon.setText("+");
         btnIcon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,19 +129,22 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel1.add(btnIcon);
         btnIcon.setBounds(30, 45, 104, 101);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(Fonts.getJelleeFont(18)
+        );
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("P");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(180, 95, 11, 31);
+        jLabel1.setBounds(180, 95, 30, 31);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setFont(Fonts.getJelleeFont(18)
+        );
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Create a Meal");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 10, 117, 25);
+        jLabel2.setBounds(30, 15, 210, 16);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jLabel4.setFont(Fonts.getJelleeFont(7)
+        );
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("must be between 8 and 16 characters");
@@ -142,9 +154,9 @@ public class CreateItem extends javax.swing.JFrame {
         jPanel2.add(jPanel1);
         jPanel1.setBounds(20, 21, 330, 220);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/food.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/red.png"))); // NOI18N
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(-3, 0, 430, 270);
+        jLabel3.setBounds(-20, 0, 670, 270);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,16 +181,15 @@ public class CreateItem extends javax.swing.JFrame {
     
     private void addToMealsList(ComboMeals meal) {
         
-        _meals.add(meal);
-        System.out.println("done");
+        meals.add(meal);
     }
     
     private void closeWindowAndRefresh() {
      
         this.dispose();
-        _window.dispose();
+        window.dispose();
         
-        new JabileeUI(_meals, ++addedMeals).setVisible(true);
+        new JabileeUI(meals, ++addedMeals).setVisible(true);
     }
     
     private ImageIcon getIconFromFile() {
@@ -220,6 +231,11 @@ public class CreateItem extends javax.swing.JFrame {
         txt.setText("");
     }
     
+    private void setBlackFont(JTextField txt) {
+        
+        txt.setForeground(new Color(48,48,48));
+    }
+    
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
         
         try {
@@ -251,7 +267,7 @@ public class CreateItem extends javax.swing.JFrame {
         
         try {
             ImageIcon Icon = getIconFromFile();
-            btnIcon.setIcon(_window.getResizedIcon(Icon, 70, 50));     
+            btnIcon.setIcon(window.getResizedIcon(Icon, 90, 70));     
             btnIcon.setText(null);
         }
         catch(Exception ex) {
@@ -261,10 +277,14 @@ public class CreateItem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIconActionPerformed
 
     private void txtPriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPriceMouseClicked
+        
+        setBlackFont(txtPrice);
         clearText(txtPrice);
     }//GEN-LAST:event_txtPriceMouseClicked
 
     private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+        
+        setBlackFont(txtName);
         clearText(txtName);
     }//GEN-LAST:event_txtNameMouseClicked
 

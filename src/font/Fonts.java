@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Fonts {
     private static Font Jellee;
     
-    private static Font getJelleFont(float fontSize) {
+    public static Font getJelleeFont(float fontSize) {
         
         try{
             

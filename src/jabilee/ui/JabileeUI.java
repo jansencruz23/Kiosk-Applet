@@ -1,12 +1,11 @@
 package jabilee.ui;
 
 import component.WrapLayout;
+import font.Fonts;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
-import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -29,11 +28,14 @@ public class JabileeUI extends javax.swing.JFrame {
     double total = 0;
     int btnIndex = 0;
     int addedMeals;
+    int orderNumber;
     
     public JabileeUI() {
         
         initComponents();
         initMeals();
+        generateOrderNumber();
+        initReceipt();
         setLocationRelativeTo(null);
     }
     
@@ -43,7 +45,9 @@ public class JabileeUI extends javax.swing.JFrame {
         this.meals = meals;
         
         initComponents();
+        generateOrderNumber();
         updateMeals();
+        initReceipt();
         setLocationRelativeTo(null);
     }
 
@@ -65,6 +69,7 @@ public class JabileeUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         panelReceipt = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReceipt = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
@@ -74,6 +79,7 @@ public class JabileeUI extends javax.swing.JFrame {
         panelOrder = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
@@ -89,16 +95,19 @@ public class JabileeUI extends javax.swing.JFrame {
         scrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         scrollPane.setOpaque(false);
 
-        panelItems.setBackground(new java.awt.Color(102, 0, 0));
+        panelItems.setBackground(new java.awt.Color(204, 0, 0));
         panelItems.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         panelItems.setAutoscrolls(true);
+        panelItems.setFont(Fonts.getJelleeFont(12)
+        );
         panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
         panelItems.setName("add"); // NOI18N
         panelItems.setLayout(new java.awt.GridLayout(0, 3, 5, 5));
 
-        btnItem1.setIcon(getResizedIcon("/resources/chickenjoy.png", 70,50));
+        btnItem1.setIcon(getResizedIcon("/resources/chickenjoy.png", 90,70));
         btnItem1.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnItem1.setFont(Fonts.getJelleeFont(14)
+        );
         btnItem1.setText("125.0");
         btnItem1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem1.setName("Chicken Joy"); // NOI18N
@@ -111,9 +120,10 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem1);
 
-        btnItem2.setIcon(getResizedIcon("/resources/spaghetti.png", 70, 50));
+        btnItem2.setIcon(getResizedIcon("/resources/spaghetti.png", 90, 70));
         btnItem2.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnItem2.setFont(Fonts.getJelleeFont(14)
+        );
         btnItem2.setText("70.0");
         btnItem2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem2.setName("Jolly Spaghetti"); // NOI18N
@@ -126,9 +136,10 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem2);
 
-        btnItem3.setIcon(getResizedIcon("/resources/yumburger.png", 70,50));
+        btnItem3.setIcon(getResizedIcon("/resources/yumburger.png", 90,70));
         btnItem3.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnItem3.setFont(Fonts.getJelleeFont(14)
+        );
         btnItem3.setText("40.0");
         btnItem3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem3.setName("Yumburger"); // NOI18N
@@ -141,9 +152,10 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem3);
 
-        btnItem4.setIcon(getResizedIcon("/resources/fries.png", 70, 50));
+        btnItem4.setIcon(getResizedIcon("/resources/fries.png", 90, 70));
         btnItem4.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnItem4.setFont(Fonts.getJelleeFont(14)
+        );
         btnItem4.setText("40.0");
         btnItem4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem4.setName("French Fries"); // NOI18N
@@ -156,9 +168,10 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem4);
 
-        btnItem5.setIcon(getResizedIcon("/resources/sundae.png", 55, 50));
+        btnItem5.setIcon(getResizedIcon("/resources/sundae.png", 65, 70));
         btnItem5.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnItem5.setFont(Fonts.getJelleeFont(14)
+        );
         btnItem5.setText("35.0");
         btnItem5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem5.setName("Sundae    "); // NOI18N
@@ -171,9 +184,10 @@ public class JabileeUI extends javax.swing.JFrame {
         });
         panelItems.add(btnItem5);
 
-        btnItem6.setIcon(getResizedIcon("/resources/coke.png", 70, 50));
+        btnItem6.setIcon(getResizedIcon("/resources/coke.png", 90, 70));
         btnItem6.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnItem6.setFont(Fonts.getJelleeFont(14)
+        );
         btnItem6.setText("15.0");
         btnItem6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnItem6.setName("Coca Cola"); // NOI18N
@@ -207,11 +221,11 @@ public class JabileeUI extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setFont(Fonts.getJelleeFont(36f));
         jLabel2.setForeground(new java.awt.Color(255, 51, 0));
         jLabel2.setText("Jabilee");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 10, 280, 50);
+        jLabel2.setBounds(30, 10, 440, 50);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 490, 70);
@@ -223,11 +237,21 @@ public class JabileeUI extends javax.swing.JFrame {
         panelReceipt.setLayout(null);
 
         jPanel6.setBackground(new java.awt.Color(249, 243, 243));
+        jPanel6.setLayout(null);
+
+        jLabel4.setFont(Fonts.getJelleeFont(15)
+        );
+        jLabel4.setForeground(new java.awt.Color(48, 48, 48));
+        jLabel4.setText("Order Details (Proceed to Cashier)");
+        jPanel6.add(jLabel4);
+        jLabel4.setBounds(20, 30, 280, 30);
+
         panelReceipt.add(jPanel6);
         jPanel6.setBounds(0, 0, 310, 70);
 
         txtReceipt.setEditable(false);
         txtReceipt.setColumns(2);
+        txtReceipt.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtReceipt.setRows(5);
         txtReceipt.setTabSize(4);
         txtReceipt.setText("Item                                    Qty         Price\n-----------------------------------------------------------------");
@@ -243,23 +267,26 @@ public class JabileeUI extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(249, 243, 243));
         jPanel3.setLayout(null);
 
-        btnDone.setBackground(new java.awt.Color(255, 153, 0));
-        btnDone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDone.setBackground(new java.awt.Color(0, 0, 0));
+        btnDone.setFont(Fonts.getJelleeFont(14)
+        );
         btnDone.setForeground(new java.awt.Color(255, 255, 255));
         btnDone.setText("PLACE ORDER");
-        btnDone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnDone.setBorder(null);
         btnDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoneActionPerformed(evt);
             }
         });
         jPanel3.add(btnDone);
-        btnDone.setBounds(30, 440, 210, 50);
+        btnDone.setBounds(20, 450, 230, 50);
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(Fonts.getJelleeFont(20)
+        );
+        jLabel1.setForeground(new java.awt.Color(48, 48, 48));
         jLabel1.setText("Total: ");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(80, 410, 37, 16);
+        jLabel1.setBounds(30, 410, 70, 30);
 
         jScrollPane2.setBackground(new java.awt.Color(153, 0, 0));
         jScrollPane2.setBorder(null);
@@ -279,26 +306,36 @@ public class JabileeUI extends javax.swing.JFrame {
         jPanel4.setLayout(null);
 
         btnCancel.setBackground(new java.awt.Color(255, 51, 51));
-        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancel.setFont(Fonts.getJelleeFont(12)
+        );
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel.setText("CANCEL ORDER");
-        btnCancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnCancel.setText("CLEAR ALL");
+        btnCancel.setBorder(null);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
         jPanel4.add(btnCancel);
-        btnCancel.setBounds(150, 20, 100, 30);
+        btnCancel.setBounds(170, 30, 90, 30);
+
+        jLabel3.setFont(Fonts.getJelleeFont(15)
+        );
+        jLabel3.setForeground(new java.awt.Color(48, 48, 48));
+        jLabel3.setText("Current Order");
+        jPanel4.add(jLabel3);
+        jLabel3.setBounds(20, 30, 140, 30);
 
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 0, 270, 70);
 
-        lblTotal.setForeground(new java.awt.Color(0, 0, 0));
+        lblTotal.setFont(Fonts.getJelleeFont(20)
+        );
+        lblTotal.setForeground(new java.awt.Color(255, 0, 0));
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("P 0.0");
         jPanel3.add(lblTotal);
-        lblTotal.setBounds(190, 410, 70, 16);
+        lblTotal.setBounds(110, 410, 130, 30);
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(530, 30, 270, 510);
@@ -330,15 +367,28 @@ public class JabileeUI extends javax.swing.JFrame {
             // Use final int for lambda expressions (not final will result to error)
             final int index = i;
             
-            ImageIcon icon = getResizedIcon(meals.get(index).getIcon(), 70, 50);
+            ImageIcon icon = getResizedIcon(meals.get(index).getIcon(), 90, 70);
             JButton btn = new JButton(meals.get(i).getComboPrice() + "");
             
+
             btn.setIcon(icon);
             formatButtonText(btn);
             
             btn.addActionListener(e -> clicked(index, btn));
             panelItems.add(btn, panelItems.getComponentCount() - 1);
         }
+    }
+    
+    private void generateOrderNumber() {
+        
+        Random random = new Random();
+        orderNumber = random.nextInt(1000);
+    }
+    
+    private void initReceipt() {
+        
+        txtReceipt.setText("Order Number #" + orderNumber +"\n\nItem                                    Qty         Price\n" +
+"-----------------------------------------------------------------");
     }
     
     private void clicked(int index, JButton btn) {
@@ -529,7 +579,7 @@ public class JabileeUI extends javax.swing.JFrame {
         return true;
     }
     
-    private void clearOrders() {
+    public void clearOrders() {
         
         orders.clear();
         panelOrder.removeAll();
@@ -559,7 +609,7 @@ public class JabileeUI extends javax.swing.JFrame {
         
         btn.setBackground(new Color(255,204,51));
         btn.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-        btn.setFont(new Font("Segoe UI", 1, 14));
+        btn.setFont(Fonts.getJelleeFont(14));
     }
         
     public ImageIcon getResizedIcon(String path, int width, int height) {
@@ -666,6 +716,8 @@ public class JabileeUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
