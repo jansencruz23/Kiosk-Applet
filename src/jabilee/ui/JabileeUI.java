@@ -284,7 +284,7 @@ public class JabileeUI extends javax.swing.JFrame {
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("P 0.0");
         jPanel3.add(lblTotal);
-        lblTotal.setBounds(190, 410, 25, 16);
+        lblTotal.setBounds(190, 410, 70, 16);
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(530, 30, 270, 510);
@@ -342,7 +342,7 @@ public class JabileeUI extends javax.swing.JFrame {
         // Only add quantity if the item is already existing
         if(isMealExisting(meal)) {
             addQuantityToExistingItem(meal, quantity);
-            updateOrderQuantity(mealName);
+            updateOrderQuantity(meal);
         }
         else {
             meal.addQuantity(quantity);
@@ -360,15 +360,19 @@ public class JabileeUI extends javax.swing.JFrame {
         orders.add(order);
     }
     
-    private void updateOrderQuantity(String name) {
+    private void updateOrderQuantity(ComboMeals meal) {
      
-      //  Order order = getExistingOrder(name);
-        
+        Order order = getExistingOrder(meal.getComboName());
+        order.setOrderQuantity(meal.getQuantity());
     }
     
-    private void getExistingOrder(String name) {
+    private Order getExistingOrder(String name) {
         
-        
+        return orders.stream()
+              .filter(o -> o.getOrderName()
+                            .equals(name))
+              .findFirst()
+              .orElse(null);
     }
     
     public void updateTotal(double subTotal) {
@@ -507,6 +511,13 @@ public class JabileeUI extends javax.swing.JFrame {
         lblTotal.setText("P " + total);
     }
     
+    private void clearOrders() {
+        
+        orders.clear();
+        panelOrder.removeAll();
+        panelOrder.repaint();
+    }
+    
     private void resetItemsQuantity() {
         
         mealsBought.forEach(i -> i.resetQuantity());
@@ -571,15 +582,18 @@ public class JabileeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnItem5ActionPerformed
 
     private void btnItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem6ActionPerformed
-       clicked(5, btnItem6);
+        clicked(5, btnItem6);
     }//GEN-LAST:event_btnItem6ActionPerformed
 
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
-       printReceipt();
+        printReceipt();
     }//GEN-LAST:event_btnDoneActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        
         clearReceipt();
+        clearTotal();
+        clearOrders();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

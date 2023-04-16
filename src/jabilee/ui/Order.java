@@ -1,6 +1,7 @@
 package jabilee.ui;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class Order extends javax.swing.JPanel {
 
@@ -83,6 +84,16 @@ public class Order extends javax.swing.JPanel {
     public void setOrderPrice(double price) {
         
         lblPrice.setText(price + "");
+    }
+    
+    public String getOrderName() {
+        
+        return meal.getComboName();
+    }
+    
+    public JLabel getQuantityLabel() {
+        
+        return lblQuantity;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
