@@ -6,13 +6,15 @@ import javax.swing.ImageIcon;
 
 public class Meal extends javax.swing.JPanel {
 
+    private int id;
     private String mealName;
     private double mealPrice;
     private int quantity = 0;
     private ImageIcon mealIcon;
     
-    public Meal(String mealName, double mealPrice, ImageIcon mealIcon){
+    public Meal(int id, String mealName, double mealPrice, ImageIcon mealIcon){
         
+        this.id = id;
         this.mealName = mealName;
         this.mealPrice = mealPrice;
         this.mealIcon = mealIcon;
@@ -73,6 +75,11 @@ public class Meal extends javax.swing.JPanel {
         lblName.setText(mealName);
         lblPrice.setText(mealPrice + "");
         lblIcon.setIcon(mealIcon);
+    }
+    
+    public int getId() {
+        
+        return id;
     }
     
     public String getMealName() {

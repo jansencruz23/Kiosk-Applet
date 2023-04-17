@@ -4,6 +4,8 @@ import component.WrapLayout;
 import font.Fonts;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -24,6 +26,7 @@ public class JabileeUI extends javax.swing.JFrame {
     final String format = "\n%-20s \t%-10d \t%.2f";
     ArrayList<ComboMeals> meals = new ArrayList<>();
     ArrayList<ComboMeals> mealsBought = new ArrayList<>();
+    ArrayList<Meal> mealsBought2 = new ArrayList();
     ArrayList<Meal> meals2 = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
     double total = 0;
@@ -36,6 +39,7 @@ public class JabileeUI extends javax.swing.JFrame {
         initComponents();
         //initMeals();
         initOriginalMeals();
+        addMealEventListener();
         generateOrderNumber();
         initReceipt();
         setLocationRelativeTo(null);
@@ -255,13 +259,13 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private void initOriginalMeals() {
  
-        meals2.add(new Meal("Chicken Joy", 143, getResizedIcon("/resources/chickenjoy.png", 120, 75)));
-        meals2.add(new Meal("Jolly Spaghetti", 59, getResizedIcon("/resources/jollyspag.png", 120, 75)));
-        meals2.add(new Meal("Burger Steak", 59, getResizedIcon("/resources/burgersteak.png", 120, 75)));               
-        meals2.add(new Meal("Yumburger", 40, getResizedIcon("/resources/yumburger.png", 120, 75)));
-        meals2.add(new Meal("Sundae", 48, getResizedIcon("/resources/sundae.png", 120, 75)));
-        meals2.add(new Meal("Jolly Fries", 48, getResizedIcon("/resources/fries.png", 120, 75)));
-        meals2.add(new Meal("Regular Coke", 53, getResizedIcon("/resources/coke.png", 120, 75)));
+        meals2.add(new Meal(1, "Chicken Joy", 143, getResizedIcon("/resources/chickenjoy.png", 120, 75)));
+        meals2.add(new Meal(2, "Jolly Spaghetti", 59, getResizedIcon("/resources/jollyspag.png", 120, 75)));
+        meals2.add(new Meal(3, "Burger Steak", 59, getResizedIcon("/resources/burgersteak.png", 120, 75)));               
+        meals2.add(new Meal(4, "Yumburger", 40, getResizedIcon("/resources/yumburger.png", 120, 75)));
+        meals2.add(new Meal(5, "Sundae", 48, getResizedIcon("/resources/sundae.png", 120, 75)));
+        meals2.add(new Meal(6, "French Fries", 48, getResizedIcon("/resources/fries.png", 120, 75)));
+        meals2.add(new Meal(7, "Regular Coke", 53, getResizedIcon("/resources/coke.png", 120, 75)));
         
         for(int i = 0; i < meals2.size() - 1; i++) {
             
@@ -269,16 +273,23 @@ public class JabileeUI extends javax.swing.JFrame {
         }
     }
     
-    /*
+    
     private void addMealEventListener() {
         
         for(int index = 0; index < meals2.size(); index++) {
             
             Meal meal = meals2.get(index);
             
-            meal.addMouseListener(m -> clicked(index, meal));
+            final int i = index;
+            final Meal mel = meal;
+            
+            meal.addMouseListener(new MouseAdapter () {
+                public void mouseClicked(MouseEvent e) {
+                    clicked(i, mel);
+                }
+            });
         }
-    }*/
+    }
         
     private void updateMeals() {
         
@@ -294,7 +305,7 @@ public class JabileeUI extends javax.swing.JFrame {
             btn.setIcon(icon);
             formatButtonText(btn);
             
-            btn.addActionListener(e -> clicked(index, btn));
+            btn.addActionListener(e -> clicked(index, meals2.get(index)));
             panelItems.add(btn, panelItems.getComponentCount() - 1);
         }
     }
@@ -311,15 +322,11 @@ public class JabileeUI extends javax.swing.JFrame {
 "-----------------------------------------------------------------");
     }
     
-    private void clicked(int index, JButton btn) {
-        
-        ComboMeals meal = meals.get(index);
-        String mealName = meal.getComboName();
-        double mealPrice = meal.getComboPrice();
-                
+    private void clicked(int index, Meal meal) {
+                        
         // Gets the value from the spinner
-        int quantity = getOrderQuantity(mealName, btn);
-        double subTotal = quantity * mealPrice;
+        int quantity = getOrderQuantity(meal.getId(), meal);
+        double subTotal = quantity * meal.getMealPrice();
         
         addToTotal(subTotal);
         
@@ -331,15 +338,15 @@ public class JabileeUI extends javax.swing.JFrame {
         }
         else {
             meal.addQuantity(quantity);
-            addToReceipt(mealName, quantity, subTotal);
+            addToReceipt(meal.getMealName(), quantity, subTotal);
             addToMealBought(meal);
-            addToOrder(meal, btn);
+            addToOrder(meal);
         }
     }
     
-    private void addToOrder(ComboMeals meal, JButton btn) {
+    private void addToOrder(Meal meal) {
         
-        Order order = new Order(meal, btn, this);
+        Order order = new Order(meal, this);
         
         panelOrder.add(order);
         orders.add(order);
@@ -366,9 +373,9 @@ public class JabileeUI extends javax.swing.JFrame {
         txtReceipt.setText(newReceipt);
     }
         
-    private void updateOrderQuantity(ComboMeals meal) {
+    private void updateOrderQuantity(Meal meal) {
      
-        Order order = getExistingOrder(meal.getComboName());
+        Order order = getExistingOrder(meal.getMealName());
         order.setOrderQuantity(meal.getQuantity());
     }
     
@@ -398,7 +405,7 @@ public class JabileeUI extends javax.swing.JFrame {
         lblTotal.setText("P "+ total);
     }
     
-    private int getOrderQuantity(String mealName, JButton btn){
+    private int getOrderQuantity(int mealId, Meal meal){
         
         final int MINIMUM_ORDER_VALUE = 1;
         final int MAXIMUM_ORDER_VALUE = 30;
@@ -412,9 +419,9 @@ public class JabileeUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(
                 null, 
                 spinner, 
-                mealName, 
+                meal.getMealName(), 
                 JOptionPane.INFORMATION_MESSAGE, 
-                btn.getIcon());
+                meal.getIcon());
         
         int spinnerValue = (Integer) spinner.getValue();
         return spinnerValue;
@@ -427,13 +434,13 @@ public class JabileeUI extends javax.swing.JFrame {
         txt.setEditable(true);
     }
     
-    private void addQuantityToExistingItem(ComboMeals meal, int quantity){
+    private void addQuantityToExistingItem(Meal meal, int quantity){
         
         // Get item details and calculate values
-        String mealName = meal.getComboName();
+        String mealName = meal.getMealName();
         int mealQuantity = meal.getQuantity();
-        double mealPrice = meal.getComboPrice();
-        double subTotal = mealQuantity * meal.getComboPrice();
+        double mealPrice = meal.getMealPrice();
+        double subTotal = mealQuantity * meal.getMealPrice();
         int newMealQuantity = mealQuantity + quantity;
         
         String oldItem = String.format(format,mealName, mealQuantity, subTotal);
@@ -458,12 +465,12 @@ public class JabileeUI extends javax.swing.JFrame {
         txtReceipt.append(purchase);
     }
     
-    private void addToMealBought(ComboMeals meal){
+    private void addToMealBought(Meal meal){
         
-        mealsBought.add(meal);
+        mealsBought2.add(meal);
     }
     
-    private boolean isMealExisting(ComboMeals meal) {
+    private boolean isMealExisting(Meal meal) {
         
         if(mealsBought.contains(meal))
             return true;

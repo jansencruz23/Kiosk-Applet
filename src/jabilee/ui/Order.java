@@ -7,13 +7,11 @@ import javax.swing.JLabel;
 public class Order extends javax.swing.JPanel {
 
     private JabileeUI window;
-    private ComboMeals meal;
-    private JButton btn;
+    private Meal meal;
     
-    public Order(ComboMeals meal, JButton btn, JabileeUI window) {
+    public Order(Meal meal, JabileeUI window) {
         
         this.meal = meal;
-        this.btn = btn;
         this.window = window;
         
         initComponents();
@@ -95,8 +93,8 @@ public class Order extends javax.swing.JPanel {
     
     private void initOrder() {
         
-        setOrderName(meal.getComboName());
-        setOrderPrice(meal.getComboPrice());
+        setOrderName(meal.getMealName());
+        setOrderPrice(meal.getMealPrice());
         setOrderQuantity(meal.getQuantity());
     }
     
@@ -117,7 +115,7 @@ public class Order extends javax.swing.JPanel {
     
     public String getOrderName() {
         
-        return meal.getComboName();
+        return meal.getMealName();
     }
     
     public JLabel getQuantityLabel() {
@@ -132,7 +130,7 @@ public class Order extends javax.swing.JPanel {
     
     public double getOrderPrice() {
         
-        return meal.getComboPrice();
+        return meal.getMealPrice();
     }
     
     public double getOrderSubTotal() {
