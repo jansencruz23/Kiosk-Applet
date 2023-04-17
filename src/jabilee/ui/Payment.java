@@ -70,6 +70,7 @@ public class Payment extends javax.swing.JFrame {
         txtReceipt.setEditable(false);
         txtReceipt.setBackground(new java.awt.Color(255, 255, 255));
         txtReceipt.setColumns(20);
+        txtReceipt.setFont(Fonts.getReceiptFont(10));
         txtReceipt.setRows(5);
         txtReceipt.setTabSize(4);
         txtReceipt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -303,7 +304,11 @@ public class Payment extends javax.swing.JFrame {
         return false;
     }
     
-     private void printReceipt() {
+    private void insertPaymentDetails() {
+        
+    }
+    
+    private void printReceipt() {
         
         txtReceipt.append("\nChange:   P " + (amount - window.getTotal()));
         

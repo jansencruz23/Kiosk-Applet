@@ -5,6 +5,8 @@ import font.Fonts;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -20,7 +22,7 @@ import javax.swing.SpinnerNumberModel;
  */
 public class JabileeUI extends javax.swing.JFrame {
     
-    final String format = "\n%-20s \t%-10d \t%.2f";
+    final String format = "\n%-16s \t%-6d \t%.2f";
     ArrayList<Meal> mealsBought2 = new ArrayList();
     ArrayList<Meal> meals2 = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
@@ -34,7 +36,7 @@ public class JabileeUI extends javax.swing.JFrame {
         initOriginalMeals();
         addMealEventListener();
         generateOrderNumber();
-        initReceipt();
+        clearReceipt();
         setLocationRelativeTo(null);
     }
     
@@ -50,7 +52,7 @@ public class JabileeUI extends javax.swing.JFrame {
         meals2.clear();
         initOriginalMeals();
         addMealEventListener();
-        initReceipt();
+        clearReceipt();
         
         setLocationRelativeTo(null);
     }
@@ -160,7 +162,8 @@ public class JabileeUI extends javax.swing.JFrame {
 
         txtReceipt.setEditable(false);
         txtReceipt.setColumns(2);
-        txtReceipt.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtReceipt.setFont(Fonts.getReceiptFont(10)
+        );
         txtReceipt.setRows(5);
         txtReceipt.setTabSize(4);
         txtReceipt.setText("Item                                    Qty         Price\n-----------------------------------------------------------------");
@@ -310,13 +313,7 @@ public class JabileeUI extends javax.swing.JFrame {
         Random random = new Random();
         orderNumber = random.nextInt(1000);
     }
-    
-    private void initReceipt() {
-        
-        txtReceipt.setText("Order Number #" + orderNumber +"\n\nItem                                    Qty         Price\n" +
-"-----------------------------------------------------------------");
-    }
-    
+       
     private void clicked(Meal meal) {
                   
         System.out.println("CLIasdCK");
@@ -385,6 +382,7 @@ public class JabileeUI extends javax.swing.JFrame {
     public void addToTotal(double subTotal) {
         
         total += subTotal;
+        
         lblTotal.setText("P "+ total);
     }
     
@@ -476,11 +474,24 @@ public class JabileeUI extends javax.swing.JFrame {
         
         return btn.getName().equals("+");
     }
-    
+
     public void clearReceipt() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
         
-        txtReceipt.setText("Order Number #" + orderNumber +"\n\nItem                                    Qty         Price\n" +
-"-----------------------------------------------------------------");
+        String receiptHeader =   "          JABILEE SA KANTO          " +
+                               "\n          JABILEE FOOD CORP.         " + 
+                               "\n     AUF SIDE GATE MCARTHUR HWY AC  " +
+                               "\n        RANDOMNO.#123-321-005        \n" +
+                               "\n=====================================" +
+                               "\n" + formattedDateTime + "        " +
+                               "\n=====================================" +
+                             "\n\nOrder No. # " + orderNumber          +
+                             "\n\nItem               Qty      Price\n" +
+                               "-------------------------------------";
+        
+        txtReceipt.setText(receiptHeader);
         
         resetItemsQuantity();
         resetItemsBought();
@@ -540,11 +551,13 @@ public class JabileeUI extends javax.swing.JFrame {
         return imgIcon;
     }
     
-    
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
         
         if (hasOrder()) {
-            txtReceipt.append("\n\n\nTotal:         P " + getTotal());
+            String receiptTotal = "\n\n-------------------------------------\n\n" +
+                                  "                   Total: P " + total +
+                                  "\n\n\n\n\n\n\n   Please proceed to cashier to pay";
+            txtReceipt.append(receiptTotal);
             new Payment(txtReceipt, this).setVisible(true);
         }
         else {
