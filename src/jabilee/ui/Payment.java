@@ -24,6 +24,8 @@ public class Payment extends javax.swing.JFrame {
         initReceipt();
         setLocationRelativeTo(null);
     }
+    
+    public Payment() { }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

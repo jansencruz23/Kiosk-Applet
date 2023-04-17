@@ -1,7 +1,6 @@
 package jabilee.ui;
 
 import font.Fonts;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class Order extends javax.swing.JPanel {
@@ -111,6 +110,11 @@ public class Order extends javax.swing.JPanel {
     public void setOrderPrice(double price) {
         
         lblPrice.setText(price + "");
+    }
+    
+    public int getId() {
+        
+        return meal.getId();
     }
     
     public String getOrderName() {

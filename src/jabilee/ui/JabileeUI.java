@@ -30,7 +30,6 @@ public class JabileeUI extends javax.swing.JFrame {
     ArrayList<Meal> meals2 = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
     double total = 0;
-    int btnIndex = 0;
     int addedMeals;
     int orderNumber;
     
@@ -273,19 +272,16 @@ public class JabileeUI extends javax.swing.JFrame {
         }
     }
     
-    
     private void addMealEventListener() {
         
-        for(int index = 0; index < meals2.size(); index++) {
+        for(int i = 0; i < meals2.size(); i++) {
             
-            Meal meal = meals2.get(index);
-            
-            final int i = index;
-            final Meal mel = meal;
+            final Meal meal = meals2.get(i);
             
             meal.addMouseListener(new MouseAdapter () {
+                @Override
                 public void mouseClicked(MouseEvent e) {
-                    clicked(i, mel);
+                    clicked(meal);
                 }
             });
         }
@@ -305,7 +301,7 @@ public class JabileeUI extends javax.swing.JFrame {
             btn.setIcon(icon);
             formatButtonText(btn);
             
-            btn.addActionListener(e -> clicked(index, meals2.get(index)));
+            btn.addActionListener(e -> clicked(meals2.get(index)));
             panelItems.add(btn, panelItems.getComponentCount() - 1);
         }
     }
@@ -322,10 +318,10 @@ public class JabileeUI extends javax.swing.JFrame {
 "-----------------------------------------------------------------");
     }
     
-    private void clicked(int index, Meal meal) {
+    private void clicked(Meal meal) {
                         
         // Gets the value from the spinner
-        int quantity = getOrderQuantity(meal.getId(), meal);
+        int quantity = getOrderQuantity(meal);
         double subTotal = quantity * meal.getMealPrice();
         
         addToTotal(subTotal);
@@ -365,7 +361,7 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private void removeFromReceipt(Order order) {
      
-        mealsBought.removeIf(m -> m.getComboName().equals(order.getOrderName()));
+        mealsBought2.removeIf(m -> m.getId() == order.getId());
         //mealsBought.forEach(n -> System.out.println(n.getComboName()));
         String oldReceipt = txtReceipt.getText();
         String newReceipt = oldReceipt.replace(String.format(format, order.getOrderName(), order.getOrderQuantity(), order.getOrderSubTotal()), "");
@@ -375,18 +371,17 @@ public class JabileeUI extends javax.swing.JFrame {
         
     private void updateOrderQuantity(Meal meal) {
      
-        Order order = getExistingOrder(meal.getMealName());
+        Order order = getExistingOrder(meal.getId());
         order.setOrderQuantity(meal.getQuantity());
     }
     
-    private Order getExistingOrder(String name) {
+    private Order getExistingOrder(int id) {
         
         return orders.stream()
-              .filter(o -> o.getOrderName()
-                            .equals(name))
-              .findFirst()
-              .orElse(null);
-    }
+                     .filter(o -> o.getId() == id)
+                     .findFirst()
+                     .orElse(null);
+      }
     
     public void addToTotal(double subTotal) {
         
@@ -405,7 +400,7 @@ public class JabileeUI extends javax.swing.JFrame {
         lblTotal.setText("P "+ total);
     }
     
-    private int getOrderQuantity(int mealId, Meal meal){
+    private int getOrderQuantity(Meal meal){
         
         final int MINIMUM_ORDER_VALUE = 1;
         final int MAXIMUM_ORDER_VALUE = 30;
@@ -472,7 +467,7 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private boolean isMealExisting(Meal meal) {
         
-        if(mealsBought.contains(meal))
+        if(mealsBought2.contains(meal))
             return true;
         
         return false;
