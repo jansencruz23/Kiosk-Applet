@@ -59,6 +59,7 @@ public class CreateItem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(380, 300));
+        setResizable(false);
         setSize(new java.awt.Dimension(400, 300));
 
         jPanel2.setBackground(new java.awt.Color(153, 0, 0));

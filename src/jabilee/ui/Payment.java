@@ -2,8 +2,6 @@ package jabilee.ui;
 
 import font.Fonts;
 import java.awt.Component;
-import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -159,79 +157,118 @@ public class Payment extends javax.swing.JFrame {
         jPanel3.add(txtNum);
         txtNum.setBounds(30, 140, 145, 40);
 
-        btnRemove.setText("<");
+        btnRemove.setBackground(new java.awt.Color(255, 255, 255));
+        btnRemove.setFont(Fonts.getJelleeFont(16)
+        );
+        btnRemove.setForeground(new java.awt.Color(48, 48, 48));
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backspace.png"))); // NOI18N
+        btnRemove.setBorder(null);
+        btnRemove.setBorderPainted(false);
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnRemove);
         btnRemove.setBounds(177, 140, 72, 40);
 
         panelNum.setOpaque(false);
         panelNum.setLayout(new java.awt.GridLayout(4, 3, 1, 1));
 
-        btn7.setFont(Fonts.getJelleeFont(14)
+        btn7.setBackground(new java.awt.Color(255, 255, 255));
+        btn7.setFont(Fonts.getJelleeFont(16)
         );
+        btn7.setForeground(new java.awt.Color(48, 48, 48));
         btn7.setText("7");
         panelNum.add(btn7);
 
-        btn8.setFont(Fonts.getJelleeFont(14)
+        btn8.setBackground(new java.awt.Color(255, 255, 255));
+        btn8.setFont(Fonts.getJelleeFont(16)
         );
+        btn8.setForeground(new java.awt.Color(48, 48, 48));
         btn8.setText("8");
         panelNum.add(btn8);
 
-        btn9.setFont(Fonts.getJelleeFont(14)
+        btn9.setBackground(new java.awt.Color(255, 255, 255));
+        btn9.setFont(Fonts.getJelleeFont(16)
         );
+        btn9.setForeground(new java.awt.Color(48, 48, 48));
         btn9.setText("9");
         panelNum.add(btn9);
 
-        btn4.setFont(Fonts.getJelleeFont(14)
+        btn4.setBackground(new java.awt.Color(255, 255, 255));
+        btn4.setFont(Fonts.getJelleeFont(16)
         );
+        btn4.setForeground(new java.awt.Color(48, 48, 48));
         btn4.setText("4");
         panelNum.add(btn4);
 
-        btn5.setFont(Fonts.getJelleeFont(14)
+        btn5.setBackground(new java.awt.Color(255, 255, 255));
+        btn5.setFont(Fonts.getJelleeFont(16)
         );
+        btn5.setForeground(new java.awt.Color(48, 48, 48));
         btn5.setText("5");
         panelNum.add(btn5);
 
-        btn6.setFont(Fonts.getJelleeFont(14)
+        btn6.setBackground(new java.awt.Color(255, 255, 255));
+        btn6.setFont(Fonts.getJelleeFont(16)
         );
+        btn6.setForeground(new java.awt.Color(48, 48, 48));
         btn6.setText("6");
         panelNum.add(btn6);
 
-        btn1.setFont(Fonts.getJelleeFont(14)
+        btn1.setBackground(new java.awt.Color(255, 255, 255));
+        btn1.setFont(Fonts.getJelleeFont(16)
         );
+        btn1.setForeground(new java.awt.Color(48, 48, 48));
         btn1.setText("1");
         panelNum.add(btn1);
 
-        btn2.setFont(Fonts.getJelleeFont(14)
+        btn2.setBackground(new java.awt.Color(255, 255, 255));
+        btn2.setFont(Fonts.getJelleeFont(16)
         );
+        btn2.setForeground(new java.awt.Color(48, 48, 48));
         btn2.setText("2");
         panelNum.add(btn2);
 
-        btn3.setFont(Fonts.getJelleeFont(14)
+        btn3.setBackground(new java.awt.Color(255, 255, 255));
+        btn3.setFont(Fonts.getJelleeFont(16)
         );
+        btn3.setForeground(new java.awt.Color(48, 48, 48));
         btn3.setText("3");
         panelNum.add(btn3);
 
-        btnPeriod.setFont(Fonts.getJelleeFont(14)
+        btnPeriod.setBackground(new java.awt.Color(255, 255, 255));
+        btnPeriod.setFont(Fonts.getJelleeFont(16)
         );
+        btnPeriod.setForeground(new java.awt.Color(48, 48, 48));
         btnPeriod.setText(".");
         panelNum.add(btnPeriod);
 
-        btn0.setFont(Fonts.getJelleeFont(14)
+        btn0.setBackground(new java.awt.Color(255, 255, 255));
+        btn0.setFont(Fonts.getJelleeFont(16)
         );
+        btn0.setForeground(new java.awt.Color(48, 48, 48));
         btn0.setText("0");
         panelNum.add(btn0);
 
-        btn00.setFont(Fonts.getJelleeFont(14)
+        btn00.setBackground(new java.awt.Color(255, 255, 255));
+        btn00.setFont(Fonts.getJelleeFont(16)
         );
+        btn00.setForeground(new java.awt.Color(48, 48, 48));
         btn00.setText("00");
         panelNum.add(btn00);
 
         jPanel3.add(panelNum);
         panelNum.setBounds(30, 190, 220, 210);
 
-        btnPay.setFont(Fonts.getJelleeFont(18)
+        btnPay.setBackground(new java.awt.Color(0, 0, 0));
+        btnPay.setFont(Fonts.getJelleeFont(14)
         );
+        btnPay.setForeground(new java.awt.Color(255, 255, 255));
         btnPay.setText("PAY");
+        btnPay.setFocusPainted(false);
+        btnPay.setFocusable(false);
         btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPayActionPerformed(evt);
@@ -280,12 +317,21 @@ public class Payment extends javax.swing.JFrame {
     
     private void validatePay() {
         
-        if (isPaySufficient()) {
-            printReceipt();
+        if (!isPaySufficient()) {
+            JOptionPane.showMessageDialog(null, "Insufficient amount!", "Transaction unsuccessful", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        JOptionPane.showMessageDialog(null, "Insufficient amount!", "Transaction unsuccessful", JOptionPane.ERROR_MESSAGE);
+        insertPaymentDetails();
+        Printer printer = new Printer();
+        printer.printReceipt(txtReceipt);
+
+        window.generateOrderNumber();
+        window.clearReceipt();
+        window.clearTotal();
+        window.clearOrders();
+
+        this.dispose();
     }
     
     private boolean isPaySufficient() {
@@ -309,6 +355,11 @@ public class Payment extends javax.swing.JFrame {
         return amount - (Double.parseDouble(lblTotal.getText()));
     }
     
+    private void removeLastCharacter() {
+        
+        txtNum.setText(txtNum.getText().substring(0, txtNum.getText().length() - 1));
+    }
+    
     private void insertPaymentDetails() {
         
         String oldReceipt = txtReceipt.getText();
@@ -321,47 +372,7 @@ public class Payment extends javax.swing.JFrame {
                                                "\n Come again :)";
         txtReceipt.setText(newReceipt);
     }
-    
-    private void printReceipt() {
         
-        insertPaymentDetails();
-        
-        try {
-            
-            MessageFormat header = new MessageFormat("Jabilee");
-            MessageFormat footer = new MessageFormat("");
-            
-            boolean isComplete = txtReceipt.print(header,footer);
-            
-            if(isComplete) {
-                JOptionPane.showMessageDialog(
-                        null, 
-                        "Done printing!", 
-                        "Information", 
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                
-                window.generateOrderNumber();
-                window.clearReceipt();
-                window.clearTotal();
-                window.clearOrders();
-                
-                this.dispose();
-            }
-            else
-                JOptionPane.showMessageDialog(
-                        null, 
-                        "Printing", 
-                        "Printer", 
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-        }
-        catch(PrinterException ex) {
-            
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-    
     private void insertNumber(String num) {
         
         boolean hasPeriod = (txtNum.getText().contains(".") && num.equals("."));
@@ -375,6 +386,11 @@ public class Payment extends javax.swing.JFrame {
         
         validatePay();
     }//GEN-LAST:event_btnPayActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        
+        removeLastCharacter();
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
 
     

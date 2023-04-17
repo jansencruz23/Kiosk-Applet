@@ -1,5 +1,6 @@
 package jabilee.ui;
 
+import admin.Admin;
 import component.WrapLayout;
 import font.Fonts;
 import java.awt.Image;
@@ -85,6 +86,7 @@ public class JabileeUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1165, 609));
+        setResizable(false);
         setSize(new java.awt.Dimension(550, 600));
         getContentPane().setLayout(null);
 
@@ -559,6 +561,10 @@ public class JabileeUI extends javax.swing.JFrame {
                                   "                   Total: P " + total +
                                   "\n\n\n\n\n\n\n   Please proceed to cashier to pay";
             txtReceipt.append(receiptTotal);
+            
+            Printer printer = new Printer();
+            printer.printReceipt(txtReceipt);
+            
             new Payment(txtReceipt, this).setVisible(true);
         }
         else {
@@ -575,11 +581,10 @@ public class JabileeUI extends javax.swing.JFrame {
 
     private void btnCreateMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMealActionPerformed
         
-        //Admin admin = new Admin();
-        //if(admin.isAdmin()) {
+        Admin admin = new Admin();
+        if(admin.isAdmin()) {
             new CreateItem(meals2, this, addedMeals).setVisible(true);
-        //}
-        
+        }
     }//GEN-LAST:event_btnCreateMealActionPerformed
 
     public static void main(String args[]) {
