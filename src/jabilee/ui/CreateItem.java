@@ -16,15 +16,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class CreateItem extends javax.swing.JFrame {
 
-    final int MIN_COMBONAME_LENGTH = 8;
-    final int MIN_COMBOPRICE = 0;
+    final int MIN_MEALNAME_LENGTH = 8;
+    final int MAX_MEALNAME_LENGTH = 16;
+    final int MIN_MEALPRICE = 0;
     
-    private ArrayList<ComboMeals> meals;
+    private ArrayList<Meal> meals;
     private JabileeUI window;
     private int addedMeals = 0;
     ImageIcon icon;
     
-    public CreateItem(ArrayList<ComboMeals> meals, JabileeUI window, int addedMeals) {
+    public CreateItem(ArrayList<Meal> meals, JabileeUI window, int addedMeals) {
         
         this.meals = meals;
         this.window = window;
@@ -179,12 +180,12 @@ public class CreateItem extends javax.swing.JFrame {
 
     private void createComboMeal(String mealName, double mealPrice) {
         
-        ComboMeals meal = new ComboMeals(mealName, mealPrice);
+        Meal meal = new Meal(meals.size() + 1, mealName, mealPrice, icon);
         meal.setIcon(icon);
         addToMealsList(meal);
     }
     
-    private void addToMealsList(ComboMeals meal) {
+    private void addToMealsList(Meal meal) {
         
         meals.add(meal);
     }
@@ -223,12 +224,13 @@ public class CreateItem extends javax.swing.JFrame {
     
     private boolean isComboNameValid() {
         
-        return txtName.getText().length() >= MIN_COMBONAME_LENGTH;
+        return txtName.getText().length() >= MIN_MEALNAME_LENGTH 
+                && txtName.getText().length() <= MAX_MEALNAME_LENGTH;
     }
     
     private boolean isComboPriceValid() {
         
-        return Double.parseDouble(txtPrice.getText()) > MIN_COMBOPRICE;
+        return Double.parseDouble(txtPrice.getText()) > MIN_MEALPRICE;
     }
     
     private void clearText(JTextField txt) {

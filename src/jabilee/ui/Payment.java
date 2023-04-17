@@ -322,6 +322,7 @@ public class Payment extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 
+                window.generateOrderNumber();
                 window.clearReceipt();
                 window.clearTotal();
                 window.clearOrders();
