@@ -70,7 +70,7 @@
             <Container class="javax.swing.JPanel" name="panelItems">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                  <Color blue="ec" green="fc" red="ff" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -79,13 +79,17 @@
                 </Property>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Fonts.getJelleeFont(12)&#xd;&#xa;" type="code"/>
+                  <Connection code="Fonts.getJelleeFont(12)&#xa;    " type="code"/>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 79]"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="add" noResource="true"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
+                <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="*/&#xa;&#xa;panelItems.setLayout(new WrapLayout(WrapLayout.LEADING));"/>
+              </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="3"/>
@@ -94,150 +98,6 @@
                 <Property name="verticalGap" type="int" value="5"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btnItem1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="125.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="3"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="Chicken Joy" noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem1ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem1.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem1.setHorizontalTextPosition(SwingConstants.CENTER);"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem1.setIcon(getResizedIcon(&quot;/resources/chickenjoy.png&quot;, 90,70));"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnItem2">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="70.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="3"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="Jolly Spaghetti" noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem2ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem2.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem2.setHorizontalTextPosition(SwingConstants.CENTER);"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem2.setIcon(getResizedIcon(&quot;/resources/spaghetti.png&quot;, 90, 70));"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnItem3">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="40.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="3"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="Yumburger" noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem3ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem3.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem3.setHorizontalTextPosition(SwingConstants.CENTER);"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem3.setIcon(getResizedIcon(&quot;/resources/yumburger.png&quot;, 90,70));"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnItem4">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="40.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="3"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="French Fries" noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem4ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem4.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem4.setHorizontalTextPosition(SwingConstants.CENTER);"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem4.setIcon(getResizedIcon(&quot;/resources/fries.png&quot;, 90, 70));"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnItem5">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="35.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="3"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="Sundae    " noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem5ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem5.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem5.setHorizontalTextPosition(SwingConstants.CENTER);"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem5.setIcon(getResizedIcon(&quot;/resources/sundae.png&quot;, 65, 70));"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnItem6">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="15.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="3"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="Coca Cola" noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItem6ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnItem6.setVerticalTextPosition(SwingConstants.BOTTOM);&#xa;btnItem6.setHorizontalTextPosition(SwingConstants.CENTER);"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnItem6.setIcon(getResizedIcon(&quot;/resources/coke.png&quot;, 90, 70));"/>
-                  </AuxValues>
-                </Component>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -256,6 +116,9 @@
                       </Border>
                     </Property>
                     <Property name="name" type="java.lang.String" value="+" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[130, 150]"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

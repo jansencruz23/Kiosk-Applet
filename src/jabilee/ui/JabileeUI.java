@@ -24,6 +24,7 @@ public class JabileeUI extends javax.swing.JFrame {
     final String format = "\n%-20s \t%-10d \t%.2f";
     ArrayList<ComboMeals> meals = new ArrayList<>();
     ArrayList<ComboMeals> mealsBought = new ArrayList<>();
+    ArrayList<Meal> meals2 = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
     double total = 0;
     int btnIndex = 0;
@@ -33,7 +34,8 @@ public class JabileeUI extends javax.swing.JFrame {
     public JabileeUI() {
         
         initComponents();
-        initMeals();
+        //initMeals();
+        initOriginalMeals();
         generateOrderNumber();
         initReceipt();
         setLocationRelativeTo(null);
@@ -58,12 +60,6 @@ public class JabileeUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         panelItems = new javax.swing.JPanel();
-        btnItem1 = new javax.swing.JButton();
-        btnItem2 = new javax.swing.JButton();
-        btnItem3 = new javax.swing.JButton();
-        btnItem4 = new javax.swing.JButton();
-        btnItem5 = new javax.swing.JButton();
-        btnItem6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -95,110 +91,18 @@ public class JabileeUI extends javax.swing.JFrame {
         scrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         scrollPane.setOpaque(false);
 
-        panelItems.setBackground(new java.awt.Color(204, 0, 0));
+        panelItems.setBackground(new java.awt.Color(255, 252, 236));
         panelItems.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         panelItems.setAutoscrolls(true);
         panelItems.setFont(Fonts.getJelleeFont(12)
         );
         panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
         panelItems.setName("add"); // NOI18N
+        /*
         panelItems.setLayout(new java.awt.GridLayout(0, 3, 5, 5));
+        */
 
-        btnItem1.setIcon(getResizedIcon("/resources/chickenjoy.png", 90,70));
-        btnItem1.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem1.setFont(Fonts.getJelleeFont(14)
-        );
-        btnItem1.setText("125.0");
-        btnItem1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnItem1.setName("Chicken Joy"); // NOI18N
-        btnItem1.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnItem1.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnItem1ActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnItem1);
-
-        btnItem2.setIcon(getResizedIcon("/resources/spaghetti.png", 90, 70));
-        btnItem2.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem2.setFont(Fonts.getJelleeFont(14)
-        );
-        btnItem2.setText("70.0");
-        btnItem2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnItem2.setName("Jolly Spaghetti"); // NOI18N
-        btnItem2.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnItem2.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnItem2ActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnItem2);
-
-        btnItem3.setIcon(getResizedIcon("/resources/yumburger.png", 90,70));
-        btnItem3.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem3.setFont(Fonts.getJelleeFont(14)
-        );
-        btnItem3.setText("40.0");
-        btnItem3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnItem3.setName("Yumburger"); // NOI18N
-        btnItem3.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnItem3.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnItem3ActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnItem3);
-
-        btnItem4.setIcon(getResizedIcon("/resources/fries.png", 90, 70));
-        btnItem4.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem4.setFont(Fonts.getJelleeFont(14)
-        );
-        btnItem4.setText("40.0");
-        btnItem4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnItem4.setName("French Fries"); // NOI18N
-        btnItem4.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnItem4.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnItem4ActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnItem4);
-
-        btnItem5.setIcon(getResizedIcon("/resources/sundae.png", 65, 70));
-        btnItem5.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem5.setFont(Fonts.getJelleeFont(14)
-        );
-        btnItem5.setText("35.0");
-        btnItem5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnItem5.setName("Sundae    "); // NOI18N
-        btnItem5.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnItem5.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnItem5ActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnItem5);
-
-        btnItem6.setIcon(getResizedIcon("/resources/coke.png", 90, 70));
-        btnItem6.setBackground(new java.awt.Color(255, 204, 51));
-        btnItem6.setFont(Fonts.getJelleeFont(14)
-        );
-        btnItem6.setText("15.0");
-        btnItem6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        btnItem6.setName("Coca Cola"); // NOI18N
-        btnItem6.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnItem6.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnItem6ActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnItem6);
+        panelItems.setLayout(new WrapLayout(WrapLayout.LEADING));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -206,6 +110,7 @@ public class JabileeUI extends javax.swing.JFrame {
         jButton1.setText("+");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jButton1.setName("+"); // NOI18N
+        jButton1.setPreferredSize(new java.awt.Dimension(130, 150));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -347,19 +252,34 @@ public class JabileeUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initMeals() {
+    
+    private void initOriginalMeals() {
+ 
+        meals2.add(new Meal("Chicken Joy", 143, getResizedIcon("/resources/chickenjoy.png", 120, 75)));
+        meals2.add(new Meal("Jolly Spaghetti", 59, getResizedIcon("/resources/jollyspag.png", 120, 75)));
+        meals2.add(new Meal("Burger Steak", 59, getResizedIcon("/resources/burgersteak.png", 120, 75)));               
+        meals2.add(new Meal("Yumburger", 40, getResizedIcon("/resources/yumburger.png", 120, 75)));
+        meals2.add(new Meal("Sundae", 48, getResizedIcon("/resources/sundae.png", 120, 75)));
+        meals2.add(new Meal("Jolly Fries", 48, getResizedIcon("/resources/fries.png", 120, 75)));
+        meals2.add(new Meal("Regular Coke", 53, getResizedIcon("/resources/coke.png", 120, 75)));
         
-        for(int i = 0; i < panelItems.getComponentCount(); i++) {
-                
-            // Initialize index coordinates for the item buttons
-            JButton btn = (JButton) panelItems.getComponent(btnIndex++);
+        for(int i = 0; i < meals2.size() - 1; i++) {
             
-            if(isAddMealButton(btn)) continue;
-            
-            meals.add(new ComboMeals(btn.getName(), Double.parseDouble(btn.getText())));
+            panelItems.add(meals2.get(i), panelItems.getComponentCount() - 1);
         }
     }
     
+    /*
+    private void addMealEventListener() {
+        
+        for(int index = 0; index < meals2.size(); index++) {
+            
+            Meal meal = meals2.get(index);
+            
+            meal.addMouseListener(m -> clicked(index, meal));
+        }
+    }*/
+        
     private void updateMeals() {
         
         for(int i = meals.size() - 1; i >= meals.size() - addedMeals; i--) {
@@ -629,30 +549,7 @@ public class JabileeUI extends javax.swing.JFrame {
         return imgIcon;
     }
     
-    private void btnItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem1ActionPerformed
-        clicked(0, btnItem1);
-    }//GEN-LAST:event_btnItem1ActionPerformed
-
-    private void btnItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem2ActionPerformed
-        clicked(1, btnItem2);
-    }//GEN-LAST:event_btnItem2ActionPerformed
-
-    private void btnItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem3ActionPerformed
-        clicked(2, btnItem3);
-    }//GEN-LAST:event_btnItem3ActionPerformed
-
-    private void btnItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem4ActionPerformed
-        clicked(3, btnItem4);
-    }//GEN-LAST:event_btnItem4ActionPerformed
-
-    private void btnItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem5ActionPerformed
-        clicked(4, btnItem5);
-    }//GEN-LAST:event_btnItem5ActionPerformed
-
-    private void btnItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItem6ActionPerformed
-        clicked(5, btnItem6);
-    }//GEN-LAST:event_btnItem6ActionPerformed
-
+    
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
         
         if (hasOrder()) {
@@ -707,12 +604,6 @@ public class JabileeUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDone;
-    private javax.swing.JButton btnItem1;
-    private javax.swing.JButton btnItem2;
-    private javax.swing.JButton btnItem3;
-    private javax.swing.JButton btnItem4;
-    private javax.swing.JButton btnItem5;
-    private javax.swing.JButton btnItem6;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
