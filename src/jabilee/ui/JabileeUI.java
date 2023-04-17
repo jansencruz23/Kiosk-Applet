@@ -24,8 +24,8 @@ import javax.swing.SpinnerNumberModel;
 public class JabileeUI extends javax.swing.JFrame {
     
     final String format = "\n%-16s \t%-6d \t%.2f";
-    ArrayList<Meal> mealsBought2 = new ArrayList();
-    ArrayList<Meal> meals2 = new ArrayList<>();
+    ArrayList<Meal> mealsBought = new ArrayList();
+    ArrayList<Meal> meals = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
     double total = 0;
     int addedMeals;
@@ -44,13 +44,13 @@ public class JabileeUI extends javax.swing.JFrame {
     public JabileeUI(ArrayList<Meal> meals, int numAddedMeals) {
         
         this.addedMeals = numAddedMeals;
-        this.meals2 = meals;
+        this.meals = meals;
         
         initComponents();
         generateOrderNumber();
-        updateMeals();
+        addNewMealToPanel();
         addAddedMealEventListener();
-        meals2.clear();
+        meals.clear();
         initOriginalMeals();
         addMealEventListener();
         clearReceipt();
@@ -261,64 +261,57 @@ public class JabileeUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     private void initOriginalMeals() {
- 
-        meals2.add(new Meal(1, "Chicken Joy", 143, getResizedIcon("/resources/chickenjoy.png", 120, 75)));
-        meals2.add(new Meal(2, "Jolly Spaghetti", 59, getResizedIcon("/resources/jollyspag.png", 120, 75)));
-        meals2.add(new Meal(3, "Burger Steak", 59, getResizedIcon("/resources/burgersteak.png", 120, 75)));               
-        meals2.add(new Meal(4, "Yumburger", 40, getResizedIcon("/resources/yumburger.png", 120, 75)));
-        meals2.add(new Meal(5, "Sundae", 48, getResizedIcon("/resources/sundae.png", 120, 75)));
-        meals2.add(new Meal(6, "French Fries", 48, getResizedIcon("/resources/fries.png", 120, 75)));
-        meals2.add(new Meal(7, "Regular Coke", 53, getResizedIcon("/resources/coke.png", 120, 75)));
         
-        for(int i = 0; i < meals2.size(); i++) {
+        meals.add(new Meal(1, "Chicken Joy", 143, getResizedIcon("/resources/chickenjoy.png", 120, 75)));
+        meals.add(new Meal(2, "Jolly Spaghetti", 59, getResizedIcon("/resources/jollyspag.png", 120, 75)));
+        meals.add(new Meal(3, "Burger Steak", 59, getResizedIcon("/resources/burgersteak.png", 120, 75)));               
+        meals.add(new Meal(4, "Yumburger", 40, getResizedIcon("/resources/yumburger.png", 120, 75)));
+        meals.add(new Meal(5, "Sundae", 48, getResizedIcon("/resources/sundae.png", 120, 75)));
+        meals.add(new Meal(6, "French Fries", 48, getResizedIcon("/resources/fries.png", 120, 75)));
+        meals.add(new Meal(7, "Regular Coke", 53, getResizedIcon("/resources/coke.png", 120, 75)));
+        
+        for(int i = 0; i < meals.size(); i++) {
             
-            panelItems.add(meals2.get(i), panelItems.getComponentCount() - 1);
+            // Displays the meals to the itemPanel
+            panelItems.add(meals.get(i), panelItems.getComponentCount() - 1);
         }
     }
     
     private void addMealEventListener() {
         
-        for(int i = 0; i < meals2.size(); i++) {
-            
-            final Meal meal = meals2.get(i);
-            
-            meal.addMouseListener(new MouseAdapter () {
-                public void mouseClicked(MouseEvent e) {
+        // Adds a MouseListener event to each Meal
+        // When a meal is clicked, the clicked() method is called
+        meals.forEach(meal -> meal.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                     clicked(meal);
                 }
-            });
-        }
+        }));
     }
     
     private void addAddedMealEventListener() {
-            
-        final Meal meal = meals2.get(meals2.size() - 1);
-
+        
+        // Add event to the last added meal
+        Meal meal = meals.get(meals.size() - 1);
+        
         meal.addMouseListener(new MouseAdapter () {
             @Override
             public void mouseClicked(MouseEvent e) {
                 clicked(meal);
             }
         });
-    
     }
         
-    private void updateMeals() {
+    private void addNewMealToPanel() {
         
-        panelItems.add(meals2.get(meals2.size() - 1), panelItems.getComponentCount() - 1);
+        // Add the newly created meal to the itemPanel
+        Meal newMeal = meals.get(meals.size() - 1);
+        panelItems.add(newMeal, panelItems.getComponentCount() - 1);
     }
-    
-    public void generateOrderNumber() {
-        
-        Random random = new Random();
-        orderNumber = random.nextInt(1000);
-    }
-       
+           
     private void clicked(Meal meal) {
                   
-        System.out.println("CLIasdCK");
         // Gets the value from the spinner
         int quantity = getOrderQuantity(meal);
         double subTotal = quantity * meal.getMealPrice();
@@ -330,6 +323,7 @@ public class JabileeUI extends javax.swing.JFrame {
             addQuantityToExistingItem(meal, quantity);
             updateOrderQuantity(meal);
         }
+        // Add to receipt and orders
         else {
             meal.addQuantity(quantity);
             addToReceipt(meal.getMealName(), quantity, subTotal);
@@ -346,21 +340,43 @@ public class JabileeUI extends javax.swing.JFrame {
         orders.add(order);
     }
     
+    private void addQuantityToExistingItem(Meal meal, int quantity){
+        
+        // Get item details and calculate values
+        String mealName = meal.getMealName();
+        int mealQuantity = meal.getQuantity();
+        double mealPrice = meal.getMealPrice();
+        double subTotal = mealQuantity * meal.getMealPrice();
+        int newMealQuantity = mealQuantity + quantity;
+        
+        // String update receipt
+        String oldItem = String.format(format,mealName, mealQuantity, subTotal);
+        String newItem = String.format(format, mealName, newMealQuantity, (newMealQuantity * mealPrice));
+                
+        // Replace the old receipt to the updated receipt with updated quantity and subtotal
+        String copiedReceipt = txtReceipt.getText();
+        String newReceipt = copiedReceipt.replace(oldItem, newItem);
+        
+        meal.addQuantity(quantity);
+        txtReceipt.setText(newReceipt);
+    }
+    
     public void removeFromOrders(Order order) {
         
-        orders.removeIf(o -> o.getOrderName().equals(order.getOrderName()));
-        orders.forEach(n -> System.out.println(n.getOrderName()));
+        // Remove an order if Order ID from the arg matches the Order ID from order list
+        orders.removeIf(o -> o.getId() == order.getId());
+        
         panelOrder.remove(order);
         panelOrder.repaint();
-        
-        removeFromReceipt(order);
+
         subtractFromTotal(order.getOrderPrice() * order.getOrderQuantity());
     }
     
-    private void removeFromReceipt(Order order) {
+    public void removeFromReceipt(Order order) {
      
-        mealsBought2.removeIf(m -> m.getId() == order.getId());
-        //mealsBought.forEach(n -> System.out.println(n.getComboName()));
+        // Remove a Meal if Order ID and Meal ID matches
+        mealsBought.removeIf(meal -> meal.getId() == order.getId());
+
         String oldReceipt = txtReceipt.getText();
         String newReceipt = oldReceipt.replace(String.format(format, order.getOrderName(), order.getOrderQuantity(), order.getOrderSubTotal()), "");
         
@@ -379,7 +395,13 @@ public class JabileeUI extends javax.swing.JFrame {
                      .filter(o -> o.getId() == id)
                      .findFirst()
                      .orElse(null);
-      }
+    }
+    
+    public void generateOrderNumber() {
+        
+        Random random = new Random();
+        orderNumber = random.nextInt(1000);
+    }
     
     public void addToTotal(double subTotal) {
         
@@ -420,34 +442,7 @@ public class JabileeUI extends javax.swing.JFrame {
         int spinnerValue = (Integer) spinner.getValue();
         return spinnerValue;
     }
-    
-    private void setSpinnerEditable(JSpinner spinner) {
-        
-        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
-        JTextField txt = editor.getTextField();
-        txt.setEditable(true);
-    }
-    
-    private void addQuantityToExistingItem(Meal meal, int quantity){
-        
-        // Get item details and calculate values
-        String mealName = meal.getMealName();
-        int mealQuantity = meal.getQuantity();
-        double mealPrice = meal.getMealPrice();
-        double subTotal = mealQuantity * meal.getMealPrice();
-        int newMealQuantity = mealQuantity + quantity;
-        
-        String oldItem = String.format(format,mealName, mealQuantity, subTotal);
-        String newItem = String.format(format, mealName, newMealQuantity, (newMealQuantity * mealPrice));
-                
-        // Replace the old receipt to the updated receipt with updated quantity and subtotal
-        String copiedReceipt = txtReceipt.getText();
-        String newReceipt = copiedReceipt.replace(oldItem, newItem);
-        
-        meal.addQuantity(quantity);
-        txtReceipt.setText(newReceipt);
-    }
-    
+            
     public double getTotal() {
         
         return total;
@@ -461,20 +456,15 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private void addToMealBought(Meal meal){
         
-        mealsBought2.add(meal);
+        mealsBought.add(meal);
     }
     
     private boolean isMealExisting(Meal meal) {
         
-        if(mealsBought2.contains(meal))
+        if(mealsBought.contains(meal))
             return true;
         
         return false;
-    }
-    
-    private boolean isAddMealButton(JButton btn){
-        
-        return btn.getName().equals("+");
     }
 
     public void clearReceipt() {
@@ -523,18 +513,25 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private void resetItemsQuantity() {
         
-        mealsBought2.forEach(i -> i.resetQuantity());
+        mealsBought.forEach(i -> i.resetQuantity());
     }
     
     private void resetItemsBought() {
         
-        mealsBought2.clear();
+        mealsBought.clear();
     }
     
     public void refreshWindow() {
      
         new JabileeUI().setVisible(true);
         this.dispose();
+    }
+    
+    private void setSpinnerEditable(JSpinner spinner) {
+        
+        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
+        JTextField txt = editor.getTextField();
+        txt.setEditable(true);
     }
             
     public ImageIcon getResizedIcon(String path, int width, int height) {
@@ -583,7 +580,7 @@ public class JabileeUI extends javax.swing.JFrame {
         
         Admin admin = new Admin();
         if(admin.isAdmin()) {
-            new CreateItem(meals2, this, addedMeals).setVisible(true);
+            new CreateItem(meals, this, addedMeals).setVisible(true);
         }
     }//GEN-LAST:event_btnCreateMealActionPerformed
 

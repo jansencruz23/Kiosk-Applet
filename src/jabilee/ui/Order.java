@@ -145,6 +145,7 @@ public class Order extends javax.swing.JPanel {
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
 
         window.removeFromOrders(this);
+        window.removeFromReceipt(this);
         meal.resetQuantity();
     }//GEN-LAST:event_btnRemoveActionPerformed
     
