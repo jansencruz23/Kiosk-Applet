@@ -480,7 +480,8 @@ public class JabileeUI extends javax.swing.JFrame {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = now.format(formatter);
         
-        String receiptHeader =   "          JABILEE SA KANTO          " +
+        StringBuilder receiptHeader = new StringBuilder();
+        receiptHeader.append(      "          JABILEE SA KANTO          " +
                                "\n          JABILEE FOOD CORP.         " + 
                                "\n     AUF SIDE GATE MCARTHUR HWY AC  " +
                                "\n        RANDOMNO.#123-321-005        \n" +
@@ -489,9 +490,9 @@ public class JabileeUI extends javax.swing.JFrame {
                                "\n=====================================" +
                              "\n\nOrder No. # " + orderNumber          +
                              "\n\nItem               Qty      Price\n" +
-                               "-------------------------------------";
+                               "-------------------------------------");
         
-        txtReceipt.setText(receiptHeader);
+        txtReceipt.setText(receiptHeader.toString());
         
         resetItemsQuantity();
         resetItemsBought();

@@ -304,13 +304,27 @@ public class Payment extends javax.swing.JFrame {
         return false;
     }
     
+    private double getChange() {
+        
+        return amount - (Double.parseDouble(lblTotal.getText()));
+    }
+    
     private void insertPaymentDetails() {
         
+        String oldReceipt = txtReceipt.getText();
+        String newReceipt = oldReceipt.replace("                   Total: P " + lblTotal.getText() + 
+                                               "\n\n\n\n\n\n\n   Please proceed to cashier to pay", 
+                                                 "                Total : P " + lblTotal.getText() + 
+                                               "\n                Amount: P " + amount + 
+                                               "\n                Change: P " + getChange()) +
+                                               "\n\n\n\n\n\n\n Thank you for your purchase!" +
+                                               "\n Come again :)";
+        txtReceipt.setText(newReceipt);
     }
     
     private void printReceipt() {
         
-        txtReceipt.append("\nChange:   P " + (amount - window.getTotal()));
+        insertPaymentDetails();
         
         try {
             
