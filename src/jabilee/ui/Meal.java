@@ -38,6 +38,7 @@ public class Meal extends javax.swing.JPanel {
         lblIcon = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setMinimumSize(new java.awt.Dimension(130, 150));
         setPreferredSize(new java.awt.Dimension(130, 150));
         setLayout(null);

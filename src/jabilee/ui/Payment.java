@@ -2,6 +2,9 @@ package jabilee.ui;
 
 import font.Fonts;
 import java.awt.Component;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -21,6 +24,7 @@ public class Payment extends javax.swing.JFrame {
         initNumbers();
         initReceipt();
         setLocationRelativeTo(null);
+        txtNum.requestFocus();
     }
     
     public Payment() { }
@@ -154,6 +158,15 @@ public class Payment extends javax.swing.JFrame {
         lblTotal.setBounds(170, 90, 70, 30);
 
         txtNum.setEditable(false);
+        txtNum.setFont(Fonts.getJelleeFont(14)
+        );
+        txtNum.setForeground(new java.awt.Color(48, 48, 48));
+        txtNum.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNum.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNumKeyReleased(evt);
+            }
+        });
         jPanel3.add(txtNum);
         txtNum.setBounds(30, 140, 145, 40);
 
@@ -164,6 +177,7 @@ public class Payment extends javax.swing.JFrame {
         btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backspace.png"))); // NOI18N
         btnRemove.setBorder(null);
         btnRemove.setBorderPainted(false);
+        btnRemove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveActionPerformed(evt);
@@ -180,6 +194,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn7.setForeground(new java.awt.Color(48, 48, 48));
         btn7.setText("7");
+        btn7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn7);
 
         btn8.setBackground(new java.awt.Color(255, 255, 255));
@@ -187,6 +202,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn8.setForeground(new java.awt.Color(48, 48, 48));
         btn8.setText("8");
+        btn8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn8);
 
         btn9.setBackground(new java.awt.Color(255, 255, 255));
@@ -194,6 +210,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn9.setForeground(new java.awt.Color(48, 48, 48));
         btn9.setText("9");
+        btn9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn9);
 
         btn4.setBackground(new java.awt.Color(255, 255, 255));
@@ -201,6 +218,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn4.setForeground(new java.awt.Color(48, 48, 48));
         btn4.setText("4");
+        btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn4);
 
         btn5.setBackground(new java.awt.Color(255, 255, 255));
@@ -208,6 +226,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn5.setForeground(new java.awt.Color(48, 48, 48));
         btn5.setText("5");
+        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn5);
 
         btn6.setBackground(new java.awt.Color(255, 255, 255));
@@ -215,6 +234,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn6.setForeground(new java.awt.Color(48, 48, 48));
         btn6.setText("6");
+        btn6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn6);
 
         btn1.setBackground(new java.awt.Color(255, 255, 255));
@@ -222,6 +242,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn1.setForeground(new java.awt.Color(48, 48, 48));
         btn1.setText("1");
+        btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn1);
 
         btn2.setBackground(new java.awt.Color(255, 255, 255));
@@ -229,6 +250,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn2.setForeground(new java.awt.Color(48, 48, 48));
         btn2.setText("2");
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn2);
 
         btn3.setBackground(new java.awt.Color(255, 255, 255));
@@ -236,6 +258,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn3.setForeground(new java.awt.Color(48, 48, 48));
         btn3.setText("3");
+        btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn3);
 
         btnPeriod.setBackground(new java.awt.Color(255, 255, 255));
@@ -243,6 +266,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btnPeriod.setForeground(new java.awt.Color(48, 48, 48));
         btnPeriod.setText(".");
+        btnPeriod.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btnPeriod);
 
         btn0.setBackground(new java.awt.Color(255, 255, 255));
@@ -250,6 +274,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn0.setForeground(new java.awt.Color(48, 48, 48));
         btn0.setText("0");
+        btn0.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn0);
 
         btn00.setBackground(new java.awt.Color(255, 255, 255));
@@ -257,6 +282,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btn00.setForeground(new java.awt.Color(48, 48, 48));
         btn00.setText("00");
+        btn00.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelNum.add(btn00);
 
         jPanel3.add(panelNum);
@@ -267,6 +293,7 @@ public class Payment extends javax.swing.JFrame {
         );
         btnPay.setForeground(new java.awt.Color(255, 255, 255));
         btnPay.setText("PAY");
+        btnPay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPay.setFocusPainted(false);
         btnPay.setFocusable(false);
         btnPay.addActionListener(new java.awt.event.ActionListener() {
@@ -301,12 +328,11 @@ public class Payment extends javax.swing.JFrame {
 
     private void initNumbers() {
         
-        for (Component comp : panelNum.getComponents()) {
-            
-            // Add event listener to every buttons in the panelNum 
-            JButton btn = (JButton) comp;
-            btn.addActionListener(e -> insertNumber(btn.getText()));
-        }
+        // Add event listener to every buttons in the panelNum 
+        Arrays.stream(panelNum.getComponents())
+              .filter(c -> c instanceof JButton)
+              .map(c -> (JButton) c)
+              .forEach(btn -> btn.addActionListener(e -> numberClick(btn.getText())));
     }
     
     private void initReceipt() {
@@ -373,13 +399,26 @@ public class Payment extends javax.swing.JFrame {
         txtReceipt.setText(newReceipt);
     }
         
-    private void insertNumber(String num) {
+    private void numberClick(String num) {
         
         boolean hasPeriod = (txtNum.getText().contains(".") && num.equals("."));
         boolean hasNumbers = txtNum.getText().isBlank() && (num.equals("0") || num.equals("00"));
         
         if (!hasPeriod && !hasNumbers)
             txtNum.setText(txtNum.getText() + num);
+    }
+    
+    private void numberKeyPress(char key) {
+        
+        boolean hasPeriod = (txtNum.getText().contains(".") && key == '.');
+        boolean hasNumbers = txtNum.getText().isBlank() && key == '0';
+        
+        if (!hasPeriod && !hasNumbers)
+            if(key >= '0' && key <= '9' || key == '.') 
+                txtNum.setText(txtNum.getText() + key);
+        
+        if(key == '\b')
+            removeLastCharacter();
     }
     
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
@@ -392,10 +431,11 @@ public class Payment extends javax.swing.JFrame {
         removeLastCharacter();
     }//GEN-LAST:event_btnRemoveActionPerformed
 
-
-    
+    private void txtNumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumKeyReleased
+        
+        numberKeyPress(evt.getKeyChar());
+    }//GEN-LAST:event_txtNumKeyReleased
    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn00;

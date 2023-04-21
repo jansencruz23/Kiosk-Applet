@@ -228,7 +228,19 @@
         <Component class="javax.swing.JTextField" name="txtNum">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Fonts.getJelleeFont(14)&#xd;&#xa;" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="30" green="30" red="30" type="rgb"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Text Cursor"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNumKeyReleased"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="30" y="140" width="145" height="40"/>
@@ -253,6 +265,9 @@
               <Border info="null"/>
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveActionPerformed"/>
@@ -292,6 +307,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="7"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn8">
@@ -306,6 +324,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="8"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn9">
@@ -320,6 +341,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="9"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn4">
@@ -334,6 +358,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="4"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn5">
@@ -348,6 +375,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="5"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn6">
@@ -362,6 +392,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="6"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn1">
@@ -376,6 +409,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="1"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn2">
@@ -390,6 +426,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="2"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn3">
@@ -404,6 +443,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="3"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnPeriod">
@@ -418,6 +460,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="."/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn0">
@@ -432,6 +477,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="0"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn00">
@@ -446,6 +494,9 @@
                   <Color blue="30" green="30" red="30" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="00"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -462,6 +513,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="PAY"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>

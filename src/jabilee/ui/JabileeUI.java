@@ -114,6 +114,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnCreateMeal.setForeground(new java.awt.Color(255, 0, 0));
         btnCreateMeal.setText("+");
         btnCreateMeal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 5));
+        btnCreateMeal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateMeal.setFocusPainted(false);
         btnCreateMeal.setFocusable(false);
         btnCreateMeal.setName("+"); // NOI18N
@@ -186,6 +187,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnDone.setForeground(new java.awt.Color(255, 255, 255));
         btnDone.setText("PLACE ORDER");
         btnDone.setBorder(null);
+        btnDone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoneActionPerformed(evt);
@@ -224,6 +226,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("CLEAR ALL");
         btnCancel.setBorder(null);
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -553,10 +556,13 @@ public class JabileeUI extends javax.swing.JFrame {
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
         
         if (hasOrder()) {
-            String receiptTotal = "\n\n-------------------------------------\n\n" +
-                                  "                   Total: P " + total +
-                                  "\n\n\n\n\n\n\n   Please proceed to cashier to pay";
-            txtReceipt.append(receiptTotal);
+            
+            if(!txtReceipt.getText().contains("Please proceed to cashier")) {
+                String receiptTotal = "\n\n-------------------------------------\n\n" +
+                                      "                   Total: P " + total +
+                                      "\n\n\n\n\n\n\n   Please proceed to cashier to pay";
+                txtReceipt.append(receiptTotal);
+            }
             
             Printer printer = new Printer();
             printer.printReceipt(txtReceipt);

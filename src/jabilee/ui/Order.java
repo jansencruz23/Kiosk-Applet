@@ -81,6 +81,7 @@ public class Order extends javax.swing.JPanel {
         );
         btnRemove.setForeground(new java.awt.Color(255, 255, 255));
         btnRemove.setText("-");
+        btnRemove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveActionPerformed(evt);
