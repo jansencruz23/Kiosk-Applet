@@ -3,6 +3,7 @@ package jabilee.ui;
 import font.Fonts;
 import component.CirclePanel;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -181,8 +182,7 @@ public class CreateItem extends javax.swing.JFrame {
 
     private void createComboMeal(String mealName, double mealPrice) {
         
-        Meal meal = new Meal(meals.size() + 1, mealName, mealPrice, icon);
-        meal.setIcon(icon);
+        Meal meal = new Meal(meals.size() + 1, mealName, mealPrice, getResizedIcon(icon, 125, 75));
         addToMealsList(meal);
     }
     
@@ -213,7 +213,7 @@ public class CreateItem extends javax.swing.JFrame {
                 BufferedImage image = ImageIO.read(file);
                 icon = new ImageIcon(image);
 
-                return icon;
+                return getResizedIcon(icon, 120, 75);
             }
         }
         catch(Exception ex) {
@@ -242,6 +242,14 @@ public class CreateItem extends javax.swing.JFrame {
     private void setBlackFont(JTextField txt) {
         
         txt.setForeground(new Color(48,48,48));
+    }
+    
+    public ImageIcon getResizedIcon(ImageIcon icon, int width, int height) {
+        
+        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon imgIcon = new ImageIcon(img);
+        
+        return imgIcon;
     }
     
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed

@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -473,7 +472,7 @@ public class JabileeUI extends javax.swing.JFrame {
         String formattedDateTime = now.format(formatter);
         
         StringBuilder receiptHeader = new StringBuilder();
-        receiptHeader.append(      "          JABILEE SA KANTO          " +
+        receiptHeader.append(     "          JABILEE SA KANTO          " +
                                "\n          JABILEE FOOD CORP.         " + 
                                "\n     AUF SIDE GATE MCARTHUR HWY AC  " +
                                "\n        RANDOMNO.#123-321-005        \n" +

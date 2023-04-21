@@ -116,15 +116,6 @@ public class Meal extends javax.swing.JPanel {
         quantity = 0;
     }
     
-    public ImageIcon getResizedIcon(String path, int width, int height) {
-        
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource(path));
-        Image img = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon imgIcon = new ImageIcon(img);
-        
-        return imgIcon;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblIcon;
