@@ -2,6 +2,8 @@ package jabilee.ui;
 
 import font.Fonts;
 import java.util.Arrays;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -30,6 +32,9 @@ public class Payment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+    	ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
+        setIconImage(image.getImage());
+    	
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReceipt = new javax.swing.JTextArea();

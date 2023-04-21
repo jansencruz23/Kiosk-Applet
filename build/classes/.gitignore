@@ -2,3 +2,5 @@
 /admin/
 /component/
 /font/
+/resources/
+/.gitignore

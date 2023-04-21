@@ -45,6 +45,9 @@ public class CreateItem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+    	ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
+        setIconImage(image.getImage());
+    	
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new CirclePanel(25, new Color(48,48,48, 200));
         txtName = new javax.swing.JTextField();
@@ -58,6 +61,7 @@ public class CreateItem extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Jabilee Create Item");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(380, 300));
         setResizable(false);
@@ -188,15 +192,15 @@ public class CreateItem extends javax.swing.JFrame {
     
     private void addToMealsList(Meal meal) {
         
+        //window.getMenu().saveMeal(meal);
         meals.add(meal);
     }
     
     private void closeWindowAndRefresh() {
-     
+             
+        new JabileeUI(meals, ++addedMeals).setVisible(true);
         this.dispose();
         window.dispose();
-        
-        new JabileeUI(meals, ++addedMeals).setVisible(true);
     }
     
     private ImageIcon getIconFromFile() {

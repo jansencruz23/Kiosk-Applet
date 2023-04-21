@@ -60,7 +60,10 @@ public class JabileeUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	
+    	ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
+        setIconImage(image.getImage());
+        
         jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         panelItems = new javax.swing.JPanel();
@@ -568,10 +571,7 @@ public class JabileeUI extends javax.swing.JFrame {
             Printer printer = new Printer();
             printer.printReceipt(txtReceipt);
             
-            Payment payment = new Payment(txtReceipt, this);
-            ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
-            payment.setIconImage(image.getImage());
-            payment.setVisible(true);
+            new Payment(txtReceipt, this).setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(null, "Place an order first", "Place order failed", JOptionPane.WARNING_MESSAGE);
@@ -589,11 +589,7 @@ public class JabileeUI extends javax.swing.JFrame {
         
         Admin admin = new Admin();
         if(admin.isAdmin()) {
-            
-            CreateItem createItem = new CreateItem(meals, this, addedMeals);
-            ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
-            createItem.setIconImage(image.getImage());
-            createItem.setVisible(true);
+            new CreateItem(meals, this, addedMeals).setVisible(true);
         }
     }//GEN-LAST:event_btnCreateMealActionPerformed
 
@@ -621,10 +617,7 @@ public class JabileeUI extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JabileeUI frame = new JabileeUI();
-                ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
-                frame.setIconImage(image.getImage());
-                frame.setVisible(true);
+                new JabileeUI().setVisible(true);
             }
         });
     }
