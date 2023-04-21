@@ -2,7 +2,6 @@ package jabilee.ui;
 
 import font.Fonts;
 import java.util.Arrays;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;

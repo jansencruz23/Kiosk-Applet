@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -80,7 +81,7 @@ public class CreateItem extends javax.swing.JFrame {
         txtName.setFont(Fonts.getJelleeFont(12)
         );
         txtName.setForeground(new java.awt.Color(102, 102, 102));
-        txtName.setText("Name");
+        txtName.setText("Namenamen");
         txtName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtNameMouseClicked(evt);
@@ -91,7 +92,7 @@ public class CreateItem extends javax.swing.JFrame {
 
         txtPrice.setFont(Fonts.getJelleeFont(12));
         txtPrice.setForeground(new java.awt.Color(102, 102, 102));
-        txtPrice.setText("Price");
+        txtPrice.setText("5");
         txtPrice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtPriceMouseClicked(evt);
@@ -200,6 +201,7 @@ public class CreateItem extends javax.swing.JFrame {
              
         new JabileeUI(meals, ++addedMeals).setVisible(true);
         this.dispose();
+        window.resetListeners();
         window.dispose();
     }
     

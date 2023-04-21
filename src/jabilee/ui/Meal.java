@@ -78,6 +78,7 @@ public class Meal extends javax.swing.JPanel {
     }
     
     public int getId() {
+        
         return id;
     }
     
