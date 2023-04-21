@@ -1,7 +1,6 @@
 package jabilee.ui;
 
 import font.Fonts; 
-import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Meal extends javax.swing.JPanel {
@@ -79,7 +78,6 @@ public class Meal extends javax.swing.JPanel {
     }
     
     public int getId() {
-        
         return id;
     }
     
@@ -114,6 +112,7 @@ public class Meal extends javax.swing.JPanel {
     }
     
     public void resetQuantity() {
+        
         quantity = 0;
     }
     

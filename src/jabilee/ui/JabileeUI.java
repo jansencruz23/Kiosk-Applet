@@ -84,6 +84,7 @@ public class JabileeUI extends javax.swing.JFrame {
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Jabilee Kiosk");
         setMinimumSize(new java.awt.Dimension(1165, 609));
         setResizable(false);
         setSize(new java.awt.Dimension(550, 600));
@@ -136,9 +137,10 @@ public class JabileeUI extends javax.swing.JFrame {
 
         jLabel2.setFont(Fonts.getJelleeFont(36f));
         jLabel2.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel2.setIcon(getResizedIcon("/resources/logo.png", 65,65));
         jLabel2.setText("Jabilee");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 10, 440, 50);
+        jLabel2.setBounds(30, 0, 440, 70);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 490, 70);
@@ -170,6 +172,7 @@ public class JabileeUI extends javax.swing.JFrame {
         txtReceipt.setTabSize(4);
         txtReceipt.setText("Item                                    Qty         Price\n-----------------------------------------------------------------");
         txtReceipt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        txtReceipt.setFocusable(false);
         jScrollPane1.setViewportView(txtReceipt);
 
         panelReceipt.add(jScrollPane1);
@@ -188,6 +191,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnDone.setText("PLACE ORDER");
         btnDone.setBorder(null);
         btnDone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDone.setFocusable(false);
         btnDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoneActionPerformed(evt);
@@ -227,6 +231,8 @@ public class JabileeUI extends javax.swing.JFrame {
         btnCancel.setText("CLEAR ALL");
         btnCancel.setBorder(null);
         btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancel.setFocusPainted(false);
+        btnCancel.setFocusable(false);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -398,17 +404,10 @@ public class JabileeUI extends javax.swing.JFrame {
                      .findFirst()
                      .orElse(null);
     }
-    
-    public void generateOrderNumber() {
         
-        Random random = new Random();
-        orderNumber = random.nextInt(1000);
-    }
-    
     public void addToTotal(double subTotal) {
         
         total += subTotal;
-        
         lblTotal.setText("P "+ total);
     }
     
@@ -429,17 +428,13 @@ public class JabileeUI extends javax.swing.JFrame {
         final int MAXIMUM_ORDER_VALUE = 30;
         final int ORDER_INCREMENT = 1;
         
+        // Gets the quantity using the spinner model
         SpinnerNumberModel spinnerModel = new SpinnerNumberModel(MINIMUM_ORDER_VALUE, MINIMUM_ORDER_VALUE, MAXIMUM_ORDER_VALUE, ORDER_INCREMENT);
         JSpinner spinner = new JSpinner(spinnerModel);
         
         setSpinnerEditable(spinner);
         
-        JOptionPane.showMessageDialog(
-                null, 
-                spinner, 
-                meal.getMealName(), 
-                JOptionPane.INFORMATION_MESSAGE, 
-                meal.getIcon());
+        JOptionPane.showMessageDialog(null, spinner, meal.getMealName(), JOptionPane.INFORMATION_MESSAGE, meal.getIcon());
         
         int spinnerValue = (Integer) spinner.getValue();
         return spinnerValue;
@@ -529,6 +524,12 @@ public class JabileeUI extends javax.swing.JFrame {
         this.dispose();
     }
     
+    public void generateOrderNumber() {
+        
+        Random random = new Random();
+        orderNumber = random.nextInt(1000);
+    }
+    
     private void setSpinnerEditable(JSpinner spinner) {
         
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
@@ -567,7 +568,10 @@ public class JabileeUI extends javax.swing.JFrame {
             Printer printer = new Printer();
             printer.printReceipt(txtReceipt);
             
-            new Payment(txtReceipt, this).setVisible(true);
+            Payment payment = new Payment(txtReceipt, this);
+            ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
+            payment.setIconImage(image.getImage());
+            payment.setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(null, "Place an order first", "Place order failed", JOptionPane.WARNING_MESSAGE);
@@ -585,7 +589,11 @@ public class JabileeUI extends javax.swing.JFrame {
         
         Admin admin = new Admin();
         if(admin.isAdmin()) {
-            new CreateItem(meals, this, addedMeals).setVisible(true);
+            
+            CreateItem createItem = new CreateItem(meals, this, addedMeals);
+            ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
+            createItem.setIconImage(image.getImage());
+            createItem.setVisible(true);
         }
     }//GEN-LAST:event_btnCreateMealActionPerformed
 
@@ -613,7 +621,10 @@ public class JabileeUI extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JabileeUI().setVisible(true);
+                JabileeUI frame = new JabileeUI();
+                ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
+                frame.setIconImage(image.getImage());
+                frame.setVisible(true);
             }
         });
     }

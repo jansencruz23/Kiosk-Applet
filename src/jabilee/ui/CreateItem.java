@@ -180,7 +180,7 @@ public class CreateItem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createComboMeal(String mealName, double mealPrice) {
+    private void createMeal(String mealName, double mealPrice) {
         
         Meal meal = new Meal(meals.size() + 1, mealName, mealPrice, getResizedIcon(icon, 125, 75));
         addToMealsList(meal);
@@ -223,13 +223,13 @@ public class CreateItem extends javax.swing.JFrame {
         return null;
     }
     
-    private boolean isComboNameValid() {
+    private boolean isMealNameValid() {
         
         return txtName.getText().length() >= MIN_MEALNAME_LENGTH 
                 && txtName.getText().length() <= MAX_MEALNAME_LENGTH;
     }
     
-    private boolean isComboPriceValid() {
+    private boolean isMealPriceValid() {
         
         return Double.parseDouble(txtPrice.getText()) > MIN_MEALPRICE;
     }
@@ -256,13 +256,13 @@ public class CreateItem extends javax.swing.JFrame {
         
         try {
             
-            boolean isComboMealValid = isComboNameValid() && isComboPriceValid();
+            boolean isComboMealValid = isMealNameValid() && isMealPriceValid();
             
             if(isComboMealValid) {
                 String mealName = txtName.getText();
                 double mealPrice = Double.parseDouble(txtPrice.getText());
 
-                createComboMeal(mealName, mealPrice);
+                createMeal(mealName, mealPrice);
                 closeWindowAndRefresh();
             }
             else {

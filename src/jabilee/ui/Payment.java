@@ -1,9 +1,6 @@
 package jabilee.ui;
 
 import font.Fonts;
-import java.awt.Component;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -63,6 +60,7 @@ public class Payment extends javax.swing.JFrame {
         panelBg = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Jabilee Cashier");
         setMinimumSize(new java.awt.Dimension(700, 570));
         getContentPane().setLayout(null);
 

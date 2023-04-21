@@ -1,7 +1,6 @@
 package jabilee.ui;
 
 import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
