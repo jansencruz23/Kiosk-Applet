@@ -202,6 +202,8 @@ public class CreateItem extends javax.swing.JFrame {
         new JabileeUI(meals, ++addedMeals).setVisible(true);
         this.dispose();
         window.resetListeners();
+        window.resetOrders();
+        //window.resetItemsQuantity();
         window.dispose();
     }
     

@@ -39,7 +39,7 @@ public class JabileeUI extends javax.swing.JFrame {
         
         initComponents();
         initOriginalMeals();
-        // addMealEventListener();
+        //addMealEventListener();
         generateOrderNumber();
         displayMeals();
         clearReceipt();
@@ -51,22 +51,25 @@ public class JabileeUI extends javax.swing.JFrame {
         
         this.numAddedMeals = numAddedMeals;
         this.meals = meals;
-        
  
+        resetOrders();
         resetItemsQuantity();
         resetItemsBought();
-        meals.forEach(n -> n.resetQuantity());
         initComponents();
-       // resetListeners();
-        //meals.forEach(n -> System.out.println(n.getMealName() + n.getId()));
-        meals.removeIf(m -> m.getId() <= meals.size() - numAddedMeals);
+        resetMeals();
+        
         initOriginalMeals();
         generateOrderNumber();
-        //addNewMeal();
         displayMeals();
         addAddedMealEventListener();
-        //meals.clear();
-        //addMealEventListener();
+        
+
+        
+       // addMealEventListener();
+
+       
+
+
         clearReceipt();
         
         setLocationRelativeTo(null);
@@ -328,12 +331,15 @@ public class JabileeUI extends javax.swing.JFrame {
         
         // Adds a MouseListener event to each Meal
         // When a meal is clicked, the clicked() method is called
-        meals.forEach(meal -> meal.addMouseListener(new MouseAdapter() {
+        for(int i = 0; i < meals.size() - numAddedMeals; i++) {
+            final int index = i;
+            meals.get(i).addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                    clicked(meal);
+                public void mouseClicked(MouseEvent e) {
+                    clicked(meals.get(index));
                 }
-        }));
+            });
+        }
     }
     
     public void resetListeners() {
@@ -558,14 +564,25 @@ public class JabileeUI extends javax.swing.JFrame {
         panelOrder.repaint();
     }
     
-    private void resetItemsQuantity() {
+    private void resetMeals() {
         
-        mealsBought.forEach(i -> i.resetQuantity());
+        meals.removeIf(m -> m.getId() <= meals.size() - numAddedMeals);
     }
     
-    private void resetItemsBought() {
+    public void resetItemsQuantity() {
+        
+        mealsBought.forEach(i -> i.resetQuantity());
+        meals.forEach(m -> m.resetQuantity());
+    }
+    
+    public void resetItemsBought() {
         
         mealsBought.clear();
+    }
+    
+    public void resetOrders() {
+     
+        orders.clear();
     }
     
     public void refreshWindow() {
