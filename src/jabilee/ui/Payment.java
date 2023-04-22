@@ -21,6 +21,7 @@ public class Payment extends javax.swing.JFrame {
         initComponents();
         initNumbers();
         initReceipt();
+        
         setLocationRelativeTo(null);
         txtNum.requestFocus();
     }

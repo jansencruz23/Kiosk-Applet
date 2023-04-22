@@ -39,9 +39,10 @@ public class JabileeUI extends javax.swing.JFrame {
         
         initComponents();
         initOriginalMeals();
-        //addMealEventListener();
-        generateOrderNumber();
+        addMealEventListener();
         displayMeals();
+        
+        generateOrderNumber();
         clearReceipt();
         
         setLocationRelativeTo(null);
@@ -55,21 +56,15 @@ public class JabileeUI extends javax.swing.JFrame {
         resetOrders();
         resetItemsQuantity();
         resetItemsBought();
-        initComponents();
         resetMeals();
         
+        initComponents();
         initOriginalMeals();
-        generateOrderNumber();
+        addMealEventListener();
         displayMeals();
         addAddedMealEventListener();
         
-
-        
-       // addMealEventListener();
-
-       
-
-
+        generateOrderNumber();
         clearReceipt();
         
         setLocationRelativeTo(null);
@@ -292,6 +287,7 @@ public class JabileeUI extends javax.swing.JFrame {
 
     private void displayMeals() {
         
+        // Adds meals to the 2nd to the last position in panelItems
         meals.forEach(m -> panelItems.add(m, panelItems.getComponentCount() - 1));
     }
     
@@ -305,26 +301,8 @@ public class JabileeUI extends javax.swing.JFrame {
         meals.add(new Meal(6, "French Fries", 48, getResizedIcon("/resources/fries.png", 120, 75)));
         meals.add(new Meal(7, "Regular Coke", 53, getResizedIcon("/resources/coke.png", 120, 75)));
         
+        // Sorts using the ID of the meals
         meals.sort(Comparator.comparing(n -> n.getId()));
-        
-        for(int i = 0; i < meals.size() - numAddedMeals; i++) {
-            final int index = i;
-            meals.get(i).addMouseListener(new MouseAdapter() {
-            @Override
-                public void mouseClicked(MouseEvent e) {
-                    clicked(meals.get(index));
-                }
-            });
-        }
-    }
-    
-    private void addNewMeal() {
-        
-        // Add the newly created meal to the itemPanel
-        for(int i = 6; i < meals.size(); i++) {
-            Meal newMeal = meals.get(i);
-            panelItems.add(newMeal, panelItems.getComponentCount() - 2);
-        }
     }
     
     private void addMealEventListener() {
@@ -332,6 +310,7 @@ public class JabileeUI extends javax.swing.JFrame {
         // Adds a MouseListener event to each Meal
         // When a meal is clicked, the clicked() method is called
         for(int i = 0; i < meals.size() - numAddedMeals; i++) {
+            
             final int index = i;
             meals.get(i).addMouseListener(new MouseAdapter() {
             @Override
@@ -342,17 +321,12 @@ public class JabileeUI extends javax.swing.JFrame {
         }
     }
     
-    public void resetListeners() {
-        
-        for(Meal meal : meals)
-            for(MouseListener listener : listeners)
-                meal.removeMouseListener(listener);
-    }
-    
     private void addAddedMealEventListener() {
         
+        final int NUM_ORIGINAL_MEALS = 7;
+        
         // Add event to the last added meal
-        for(int i = 7; i < meals.size(); i++) {
+        for(int i = NUM_ORIGINAL_MEALS; i < meals.size(); i++) {
             
             final int index = i;
             MouseAdapter listener = new MouseAdapter() {
@@ -361,6 +335,7 @@ public class JabileeUI extends javax.swing.JFrame {
                     clicked(meals.get(index));
                 }
             };
+            
             meals.get(i).addMouseListener(listener);
             listeners.add(listener);
         }
@@ -374,17 +349,15 @@ public class JabileeUI extends javax.swing.JFrame {
         
         addToTotal(subTotal);
         
-        mealsBought.forEach(n -> System.out.println(n.getMealName()));
-        
         // Only add quantity if the item is already existing
         if(isMealExisting(meal.getId())) {
-            //System.out.println(meal.getId());
+            
             addQuantityToExistingItem(meal, quantity);
             updateOrderQuantity(meal);
         }
         // Add to receipt and orders
-        else { 
-            //System.out.println(meal.getId());
+        else {
+            
             meal.addQuantity(quantity);
             addToReceipt(meal.getMealName(), quantity, subTotal);
             addToMealBought(meal);
@@ -421,6 +394,23 @@ public class JabileeUI extends javax.swing.JFrame {
         txtReceipt.setText(newReceipt);
     }
     
+    public void addToTotal(double subTotal) {
+        
+        total += subTotal;
+        lblTotal.setText("P "+ total);
+    }
+    
+    public void addNumberOfAddedMeals() {
+        
+        numAddedMeals++;
+    }
+    
+    private void updateOrderQuantity(Meal meal) {
+     
+        Order order = getExistingOrder(meal.getId());
+        order.setOrderQuantity(meal.getQuantity());
+    }
+    
     public void removeFromOrders(Order order) {
         
         // Remove an order if Order ID from the arg matches the Order ID from order list
@@ -442,12 +432,6 @@ public class JabileeUI extends javax.swing.JFrame {
         
         txtReceipt.setText(newReceipt);
     }
-        
-    private void updateOrderQuantity(Meal meal) {
-     
-        Order order = getExistingOrder(meal.getId());
-        order.setOrderQuantity(meal.getQuantity());
-    }
     
     private Order getExistingOrder(int id) {
         
@@ -455,17 +439,6 @@ public class JabileeUI extends javax.swing.JFrame {
                      .filter(o -> o.getId() == id)
                      .findFirst()
                      .orElse(null);
-    }
-        
-    public void addToTotal(double subTotal) {
-        
-        total += subTotal;
-        lblTotal.setText("P "+ total);
-    }
-    
-    public void addNumberOfAddedMeals() {
-        
-        numAddedMeals++;
     }
     
     public void subtractFromTotal(double subTotal) {
@@ -510,12 +483,10 @@ public class JabileeUI extends javax.swing.JFrame {
     
     private boolean isMealExisting(int id) {
         
-        for (Meal meal : mealsBought) {
-            if(meal.getId() == id){
-                System.out.print(meal.getId());
+        // If meals bought id matches the id in the arg, it returns true
+        for (Meal meal : mealsBought)
+            if(meal.getId() == id)
                 return true;
-            }
-        }
         
         return false;
     }
@@ -585,6 +556,13 @@ public class JabileeUI extends javax.swing.JFrame {
         orders.clear();
     }
     
+    public void resetListeners() {
+        
+        for(Meal meal : meals)
+            for(MouseListener listener : listeners)
+                meal.removeMouseListener(listener);
+    }
+    
     public void refreshWindow() {
      
         new JabileeUI().setVisible(true);
@@ -652,9 +630,9 @@ public class JabileeUI extends javax.swing.JFrame {
     private void btnCreateMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMealActionPerformed
         
         Admin admin = new Admin();
-        //if(admin.isAdmin()) {
+        if(admin.isAdmin()) {
             new CreateItem(meals, this, numAddedMeals).setVisible(true);
-        //}
+        }
     }//GEN-LAST:event_btnCreateMealActionPerformed
 
     public static void main(String args[]) {

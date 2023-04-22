@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -201,9 +200,8 @@ public class CreateItem extends javax.swing.JFrame {
              
         new JabileeUI(meals, ++addedMeals).setVisible(true);
         this.dispose();
+        
         window.resetListeners();
-        window.resetOrders();
-        //window.resetItemsQuantity();
         window.dispose();
     }
     
@@ -215,7 +213,7 @@ public class CreateItem extends javax.swing.JFrame {
         
         try{
             
-            if(result == JFileChooser.APPROVE_OPTION) {
+            if (result == JFileChooser.APPROVE_OPTION) {
             
                 File file = chooser.getSelectedFile();
                 BufferedImage image = ImageIO.read(file);
@@ -297,7 +295,6 @@ public class CreateItem extends javax.swing.JFrame {
         catch(Exception ex) {
             System.out.println(ex.getMessage());
         }
-        
     }//GEN-LAST:event_btnIconActionPerformed
 
     private void txtPriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPriceMouseClicked
