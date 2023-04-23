@@ -2,6 +2,8 @@ package jabilee.ui;
 
 import font.Fonts; 
 import javax.swing.ImageIcon;
+import component.DropShadowBorder;
+import java.awt.Color;
 
 public class Meal extends javax.swing.JPanel {
 
@@ -20,6 +22,9 @@ public class Meal extends javax.swing.JPanel {
        
         initComponents();
         initMeal();
+        
+        this.setBorder(new DropShadowBorder(Color.BLACK, 1, 3, 
+                .4f, 12, false, false, true, true));
     }
     
     public Meal() {
@@ -30,8 +35,6 @@ public class Meal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	setToolTipText("1-pc " + mealName);
-    	
         panelDetails = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();
@@ -40,8 +43,8 @@ public class Meal extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        setMinimumSize(new java.awt.Dimension(130, 150));
-        setPreferredSize(new java.awt.Dimension(130, 150));
+        setMinimumSize(new java.awt.Dimension(134, 150));
+        setPreferredSize(new java.awt.Dimension(134, 150));
         setLayout(null);
 
         panelDetails.setBackground(new java.awt.Color(228, 22, 61));
@@ -52,7 +55,7 @@ public class Meal extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("P");
         panelDetails.add(jLabel2);
-        jLabel2.setBounds(15, 22, 50, 25);
+        jLabel2.setBounds(10, 22, 50, 25);
 
         lblPrice.setFont(Fonts.getJelleeFont(10));
         lblPrice.setForeground(new java.awt.Color(255, 255, 255));
@@ -64,12 +67,12 @@ public class Meal extends javax.swing.JPanel {
         lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setText("name");
         panelDetails.add(lblName);
-        lblName.setBounds(15, 5, 110, 25);
+        lblName.setBounds(10, 4, 110, 25);
 
         add(panelDetails);
-        panelDetails.setBounds(0, 100, 150, 60);
+        panelDetails.setBounds(3, 100, 128, 47);
         add(lblIcon);
-        lblIcon.setBounds(0, 0, 145, 100);
+        lblIcon.setBounds(3, 0, 130, 100);
     }// </editor-fold>//GEN-END:initComponents
 
     public void initMeal() {

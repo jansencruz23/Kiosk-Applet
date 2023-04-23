@@ -1,8 +1,9 @@
 package jabilee.ui;
 
 import admin.Admin;
-import component.WrapLayout;
+import component.*;
 import font.Fonts;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -74,13 +75,12 @@ public class JabileeUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	ImageIcon icon = new ImageIcon(getClass().getResource("/resources/logo.png"));
-    	setIconImage(icon.getImage());
-    	
+        btnCreateMeal = new javax.swing.JButton();
+        ImageIcon logo = new ImageIcon(getClass().getResource("/resources/logo.png"));
+        setIconImage(logo.getImage());
         jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         panelItems = new javax.swing.JPanel();
-        btnCreateMeal = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         panelReceipt = new javax.swing.JPanel();
@@ -106,190 +106,197 @@ public class JabileeUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(550, 600));
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(254, 241, 225));
-        jPanel1.setLayout(null);
-
-        scrollPane.getViewport().setOpaque(false);
-        scrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        scrollPane.setOpaque(false);
-
-        panelItems.setBackground(new java.awt.Color(255, 252, 236));
-        panelItems.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        panelItems.setAutoscrolls(true);
-        panelItems.setFont(Fonts.getJelleeFont(12)
-        );
-        panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
-        panelItems.setName("add"); // NOI18N
-        /*
-        panelItems.setLayout(new java.awt.GridLayout(0, 3, 5, 5));
-        */
-
-        panelItems.setLayout(new WrapLayout(WrapLayout.LEADING));
-
         btnCreateMeal.setBackground(new java.awt.Color(255, 255, 255));
-        btnCreateMeal.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        btnCreateMeal.setForeground(new java.awt.Color(255, 0, 0));
-        btnCreateMeal.setText("+");
+        btnCreateMeal.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnCreateMeal.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreateMeal.setIcon(getResizedIcon("/resources/admin.jpg", 20,20));
         btnCreateMeal.setToolTipText("Create a new item");
-        btnCreateMeal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 5));
-        btnCreateMeal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCreateMeal.setFocusPainted(false);
-        btnCreateMeal.setFocusable(false);
-        btnCreateMeal.setName("+"); // NOI18N
-        btnCreateMeal.setPreferredSize(new java.awt.Dimension(130, 150));
-        btnCreateMeal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateMealActionPerformed(evt);
-            }
-        });
-        panelItems.add(btnCreateMeal);
+        btnCreateMeal.setAlignmentX(0.5F);
+        btnCreateMeal.setBorder((new DropShadowBorder(Color.BLACK, 1, 3,
+            .4f, 12, false, false, true, true)));
+btnCreateMeal.setBorderPainted(false);
+btnCreateMeal.setContentAreaFilled(false);
+btnCreateMeal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+btnCreateMeal.setFocusPainted(false);
+btnCreateMeal.setFocusable(false);
+btnCreateMeal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+btnCreateMeal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+btnCreateMeal.setMargin(new java.awt.Insets(5, 5, 5, 5));
+btnCreateMeal.setName("+"); // NOI18N
+btnCreateMeal.setPreferredSize(new java.awt.Dimension(130, 150));
+btnCreateMeal.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCreateMealActionPerformed(evt);
+    }
+    });
+    getContentPane().add(btnCreateMeal);
+    btnCreateMeal.setBounds(1085, 3, 40, 28);
 
-        scrollPane.setViewportView(panelItems);
+    jPanel1.setBackground(new java.awt.Color(254, 241, 225));
+    jPanel1.setLayout(null);
 
-        jPanel1.add(scrollPane);
-        scrollPane.setBounds(20, 90, 440, 390);
+    scrollPane.getViewport().setOpaque(false);
+    scrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+    scrollPane.setOpaque(false);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(null);
+    panelItems.setBackground(new java.awt.Color(255, 252, 236));
+    panelItems.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+    panelItems.setAutoscrolls(true);
+    panelItems.setFont(Fonts.getJelleeFont(12)
+    );
+    panelItems.setMinimumSize(new java.awt.Dimension(200, 79));
+    panelItems.setName("add"); // NOI18N
+    /*
+    panelItems.setLayout(new java.awt.GridLayout(0, 3, 5, 5));
+    */
 
-        jLabel2.setFont(Fonts.getJelleeFont(36f));
-        jLabel2.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel2.setIcon(getResizedIcon("/resources/logo.png", 65,65));
-        jLabel2.setText("Jabilee");
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 0, 440, 70);
+    panelItems.setLayout(new WrapLayout(WrapLayout.LEADING));
+    scrollPane.setViewportView(panelItems);
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 490, 70);
+    jPanel1.add(scrollPane);
+    scrollPane.setBounds(20, 90, 450, 390);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 30, 490, 510);
+    jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+    jPanel2.setLayout(null);
 
-        panelReceipt.setBackground(new java.awt.Color(255, 255, 255));
-        panelReceipt.setLayout(null);
+    jLabel2.setFont(Fonts.getJelleeFont(36f));
+    jLabel2.setForeground(new java.awt.Color(255, 51, 0));
+    jLabel2.setIcon(getResizedIcon("/resources/logo.png", 65,65));
+    jLabel2.setText("Jabilee");
+    jPanel2.add(jLabel2);
+    jLabel2.setBounds(30, 0, 440, 70);
 
-        jPanel6.setBackground(new java.awt.Color(249, 243, 243));
-        jPanel6.setLayout(null);
+    jPanel1.add(jPanel2);
+    jPanel2.setBounds(0, 0, 490, 70);
 
-        jLabel4.setFont(Fonts.getJelleeFont(15)
-        );
-        jLabel4.setForeground(new java.awt.Color(48, 48, 48));
-        jLabel4.setText("Order Details (Proceed to Cashier)");
-        jPanel6.add(jLabel4);
-        jLabel4.setBounds(20, 30, 280, 30);
+    getContentPane().add(jPanel1);
+    jPanel1.setBounds(30, 30, 490, 510);
 
-        panelReceipt.add(jPanel6);
-        jPanel6.setBounds(0, 0, 310, 70);
+    panelReceipt.setBackground(new java.awt.Color(255, 255, 255));
+    panelReceipt.setLayout(null);
 
-        txtReceipt.setEditable(false);
-        txtReceipt.setColumns(2);
-        txtReceipt.setFont(Fonts.getReceiptFont(10)
-        );
-        txtReceipt.setRows(5);
-        txtReceipt.setTabSize(4);
-        txtReceipt.setText("Item                                    Qty         Price\n-----------------------------------------------------------------");
-        txtReceipt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtReceipt.setFocusable(false);
-        jScrollPane1.setViewportView(txtReceipt);
+    jPanel6.setBackground(new java.awt.Color(249, 243, 243));
+    jPanel6.setLayout(null);
 
-        panelReceipt.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 80, 290, 420);
+    jLabel4.setFont(Fonts.getJelleeFont(15)
+    );
+    jLabel4.setForeground(new java.awt.Color(48, 48, 48));
+    jLabel4.setText("Order Details (Proceed to Cashier)");
+    jPanel6.add(jLabel4);
+    jLabel4.setBounds(20, 30, 280, 30);
 
-        getContentPane().add(panelReceipt);
-        panelReceipt.setBounds(810, 30, 310, 510);
+    panelReceipt.add(jPanel6);
+    jPanel6.setBounds(0, 0, 310, 70);
 
-        jPanel3.setBackground(new java.awt.Color(249, 243, 243));
-        jPanel3.setLayout(null);
+    txtReceipt.setEditable(false);
+    txtReceipt.setColumns(2);
+    txtReceipt.setFont(Fonts.getReceiptFont(10)
+    );
+    txtReceipt.setRows(5);
+    txtReceipt.setTabSize(4);
+    txtReceipt.setText("Item                                    Qty         Price\n-----------------------------------------------------------------");
+    txtReceipt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    txtReceipt.setFocusable(false);
+    jScrollPane1.setViewportView(txtReceipt);
 
-        btnDone.setBackground(new java.awt.Color(0, 0, 0));
-        btnDone.setFont(Fonts.getJelleeFont(14)
-        );
-        btnDone.setForeground(new java.awt.Color(255, 255, 255));
-        btnDone.setText("PLACE ORDER");
-        btnDone.setBorder(null);
-        btnDone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDone.setFocusable(false);
-        btnDone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoneActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnDone);
-        btnDone.setBounds(20, 450, 230, 50);
+    panelReceipt.add(jScrollPane1);
+    jScrollPane1.setBounds(10, 80, 290, 420);
 
-        jLabel1.setFont(Fonts.getJelleeFont(20)
-        );
-        jLabel1.setForeground(new java.awt.Color(48, 48, 48));
-        jLabel1.setText("Total: ");
-        jPanel3.add(jLabel1);
-        jLabel1.setBounds(30, 410, 70, 30);
+    getContentPane().add(panelReceipt);
+    panelReceipt.setBounds(810, 30, 310, 510);
 
-        jScrollPane2.setBackground(new java.awt.Color(153, 0, 0));
-        jScrollPane2.setBorder(null);
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    jPanel3.setBackground(new java.awt.Color(249, 243, 243));
+    jPanel3.setLayout(null);
 
-        panelOrder.setBackground(new java.awt.Color(255, 255, 255));
-        /*
-        panelOrder.setLayout(null);
-        */
-        panelOrder.setLayout(new WrapLayout(WrapLayout.LEADING));
-        jScrollPane2.setViewportView(panelOrder);
+    btnDone.setBackground(new java.awt.Color(0, 0, 0));
+    btnDone.setFont(Fonts.getJelleeFont(14)
+    );
+    btnDone.setForeground(new java.awt.Color(255, 255, 255));
+    btnDone.setText("PLACE ORDER");
+    btnDone.setBorder(null);
+    btnDone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnDone.setFocusable(false);
+    btnDone.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnDoneActionPerformed(evt);
+        }
+    });
+    jPanel3.add(btnDone);
+    btnDone.setBounds(20, 450, 230, 50);
 
-        jPanel3.add(jScrollPane2);
-        jScrollPane2.setBounds(0, 70, 270, 330);
+    jLabel1.setFont(Fonts.getJelleeFont(20)
+    );
+    jLabel1.setForeground(new java.awt.Color(48, 48, 48));
+    jLabel1.setText("Total: ");
+    jPanel3.add(jLabel1);
+    jLabel1.setBounds(30, 410, 70, 30);
 
-        jPanel4.setBackground(new java.awt.Color(249, 243, 243));
-        jPanel4.setLayout(null);
+    jScrollPane2.setBackground(new java.awt.Color(153, 0, 0));
+    jScrollPane2.setBorder(null);
+    jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        btnCancel.setBackground(new java.awt.Color(255, 51, 51));
-        btnCancel.setFont(Fonts.getJelleeFont(12)
-        );
-        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancel.setText("CLEAR ALL");
-        btnCancel.setBorder(null);
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancel.setFocusPainted(false);
-        btnCancel.setFocusable(false);
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnCancel);
-        btnCancel.setBounds(170, 30, 90, 30);
+    panelOrder.setBackground(new java.awt.Color(255, 255, 255));
+    /*
+    panelOrder.setLayout(null);
+    */
+    panelOrder.setLayout(new WrapLayout(WrapLayout.LEADING));
+    jScrollPane2.setViewportView(panelOrder);
 
-        jLabel3.setFont(Fonts.getJelleeFont(15)
-        );
-        jLabel3.setForeground(new java.awt.Color(48, 48, 48));
-        jLabel3.setText("Current Order");
-        jPanel4.add(jLabel3);
-        jLabel3.setBounds(20, 30, 140, 30);
+    jPanel3.add(jScrollPane2);
+    jScrollPane2.setBounds(0, 70, 270, 330);
 
-        jPanel3.add(jPanel4);
-        jPanel4.setBounds(0, 0, 270, 70);
+    jPanel4.setBackground(new java.awt.Color(249, 243, 243));
+    jPanel4.setLayout(null);
 
-        lblTotal.setFont(Fonts.getJelleeFont(20)
-        );
-        lblTotal.setForeground(new java.awt.Color(255, 0, 0));
-        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotal.setText("P 0.0");
-        jPanel3.add(lblTotal);
-        lblTotal.setBounds(110, 410, 130, 30);
+    btnCancel.setBackground(new java.awt.Color(255, 51, 51));
+    btnCancel.setFont(Fonts.getJelleeFont(12)
+    );
+    btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+    btnCancel.setText("CLEAR ALL");
+    btnCancel.setBorder(null);
+    btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCancel.setFocusPainted(false);
+    btnCancel.setFocusable(false);
+    btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnCancelActionPerformed(evt);
+        }
+    });
+    jPanel4.add(btnCancel);
+    btnCancel.setBounds(170, 30, 90, 30);
 
-        getContentPane().add(jPanel3);
-        jPanel3.setBounds(530, 30, 270, 510);
+    jLabel3.setFont(Fonts.getJelleeFont(15)
+    );
+    jLabel3.setForeground(new java.awt.Color(48, 48, 48));
+    jLabel3.setText("Current Order");
+    jPanel4.add(jLabel3);
+    jLabel3.setBounds(20, 30, 140, 30);
 
-        lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bg4.png"))); // NOI18N
-        getContentPane().add(lblBg);
-        lblBg.setBounds(-10, -20, 1170, 590);
+    jPanel3.add(jPanel4);
+    jPanel4.setBounds(0, 0, 270, 70);
 
-        pack();
+    lblTotal.setFont(Fonts.getJelleeFont(20)
+    );
+    lblTotal.setForeground(new java.awt.Color(255, 0, 0));
+    lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    lblTotal.setText("P 0.0");
+    jPanel3.add(lblTotal);
+    lblTotal.setBounds(110, 410, 130, 30);
+
+    getContentPane().add(jPanel3);
+    jPanel3.setBounds(530, 30, 270, 510);
+
+    lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bg4.png"))); // NOI18N
+    getContentPane().add(lblBg);
+    lblBg.setBounds(-10, -20, 1170, 590);
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void displayMeals() {
         
         // Adds meals to the 2nd to the last position in panelItems
-        meals.forEach(m -> panelItems.add(m, panelItems.getComponentCount() - 1));
+        meals.forEach(m -> panelItems.add(m));
     }
     
     private void initOriginalMeals() {
