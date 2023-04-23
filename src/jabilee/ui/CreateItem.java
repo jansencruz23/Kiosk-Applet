@@ -45,9 +45,6 @@ public class CreateItem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
-        setIconImage(image.getImage());
-    	
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new CirclePanel(25, new Color(48,48,48, 200));
         txtName = new javax.swing.JTextField();
@@ -80,7 +77,7 @@ public class CreateItem extends javax.swing.JFrame {
         txtName.setFont(Fonts.getJelleeFont(12)
         );
         txtName.setForeground(new java.awt.Color(102, 102, 102));
-        txtName.setText("Namenamen");
+        txtName.setText("Meal Name");
         txtName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtNameMouseClicked(evt);
@@ -91,7 +88,7 @@ public class CreateItem extends javax.swing.JFrame {
 
         txtPrice.setFont(Fonts.getJelleeFont(12));
         txtPrice.setForeground(new java.awt.Color(102, 102, 102));
-        txtPrice.setText("5");
+        txtPrice.setText("Meal Price eg. 50");
         txtPrice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtPriceMouseClicked(evt);
