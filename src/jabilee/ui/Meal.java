@@ -30,6 +30,8 @@ public class Meal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+    	setToolTipText("1-pc " + mealName);
+    	
         panelDetails = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();

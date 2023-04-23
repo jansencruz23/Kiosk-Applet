@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -26,11 +25,12 @@ import javax.swing.SpinnerNumberModel;
 public class JabileeUI extends javax.swing.JFrame {
     
     final String format = "\n%-16s \t%-6d \t%.2f";
+    
     ArrayList<Meal> mealsBought = new ArrayList();
     ArrayList<Meal> meals = new ArrayList<>();
-    ArrayList<Meal> addedMeals = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
     ArrayList<MouseListener> listeners = new ArrayList<>();
+    
     double total = 0;
     int numAddedMeals;
     int orderNumber;
@@ -74,8 +74,8 @@ public class JabileeUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
-        setIconImage(image.getImage());
+    	ImageIcon icon = new ImageIcon(getClass().getResource("/resources/logo.png"));
+    	setIconImage(icon.getImage());
     	
         jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
@@ -130,6 +130,7 @@ public class JabileeUI extends javax.swing.JFrame {
         btnCreateMeal.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         btnCreateMeal.setForeground(new java.awt.Color(255, 0, 0));
         btnCreateMeal.setText("+");
+        btnCreateMeal.setToolTipText("Create a new item");
         btnCreateMeal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 5));
         btnCreateMeal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateMeal.setFocusPainted(false);
