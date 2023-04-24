@@ -1,14 +1,11 @@
 package jabilee.meals;
 
-import jabilee.meals.Meal;
-import font.Fonts;
-import component.CirclePanel;
-import jabilee.ui.JabileeUI;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -16,6 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import component.CirclePanel;
+import font.Fonts;
+import jabilee.ui.JabileeUI;
 
 public class CreateItem extends javax.swing.JFrame {
 
