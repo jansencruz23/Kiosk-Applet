@@ -35,6 +35,7 @@ public class JabileeUI extends javax.swing.JFrame {
     double total = 0;
     int numAddedMeals;
     int orderNumber;
+    int queueNumber;
     
     public JabileeUI() {
         
@@ -44,6 +45,7 @@ public class JabileeUI extends javax.swing.JFrame {
         displayMeals();
         
         generateOrderNumber();
+        generateQueueNumber();
         clearReceipt();
         
         setLocationRelativeTo(null);
@@ -66,6 +68,7 @@ public class JabileeUI extends javax.swing.JFrame {
         addAddedMealEventListener();
         
         generateOrderNumber();
+        generateQueueNumber();
         clearReceipt();
         
         setLocationRelativeTo(null);
@@ -512,7 +515,8 @@ btnCreateMeal.addActionListener(new java.awt.event.ActionListener() {
                                "\n=====================================" +
                                "\n" + formattedDateTime + "        " +
                                "\n=====================================" +
-                             "\n\nOrder No. # " + orderNumber          +
+                             "\n\nQueue No. # " + queueNumber          +
+                               "\nOrder No. # " + orderNumber          +
                              "\n\nItem               Qty      Price\n" +
                                "-------------------------------------");
         
@@ -583,6 +587,12 @@ btnCreateMeal.addActionListener(new java.awt.event.ActionListener() {
         orderNumber = random.nextInt(1000);
     }
     
+    public void generateQueueNumber() {
+        
+        Random random = new Random();
+        queueNumber = random.nextInt(1000);
+    }
+    
     private void setSpinnerEditable(JSpinner spinner) {
         
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) spinner.getEditor();
@@ -621,7 +631,7 @@ btnCreateMeal.addActionListener(new java.awt.event.ActionListener() {
             Printer printer = new Printer();
             printer.printReceipt(txtReceipt);
             
-            new Payment(txtReceipt, this).setVisible(true);
+            new Payment(txtReceipt, this, queueNumber).setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(null, "Place an order first", "Place order failed", JOptionPane.WARNING_MESSAGE);

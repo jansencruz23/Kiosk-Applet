@@ -11,12 +11,14 @@ public class Payment extends javax.swing.JFrame {
 
     private JTextArea _txtReceipt;
     private JabileeUI window;
+    int queueNumber;
     private double amount;
     
-    public Payment(JTextArea txtReceipt, JabileeUI window) {
+    public Payment(JTextArea txtReceipt, JabileeUI window, int queueNumber) {
         
         this._txtReceipt = txtReceipt;
         this.window = window;
+        this.queueNumber = queueNumber;
         
         initComponents();
         initNumbers();
@@ -356,6 +358,7 @@ public class Payment extends javax.swing.JFrame {
         printer.printReceipt(txtReceipt);
 
         window.generateOrderNumber();
+        window.generateQueueNumber();
         window.clearReceipt();
         window.clearTotal();
         window.clearOrders();
@@ -392,7 +395,8 @@ public class Payment extends javax.swing.JFrame {
     private void insertPaymentDetails() {
         
         String oldReceipt = txtReceipt.getText();
-        String newReceipt = oldReceipt.replace("                   Total: P " + lblTotal.getText() + 
+        String removeQueue = oldReceipt.replace("Queue No. # " + queueNumber, "");
+        String newReceipt = removeQueue.replace("                   Total: P " + lblTotal.getText() + 
                                                "\n\n\n\n\n\n\n   Please proceed to cashier to pay", 
                                                  "                Total : P " + lblTotal.getText() + 
                                                "\n                Amount: P " + amount + 
