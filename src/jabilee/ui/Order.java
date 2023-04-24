@@ -1,5 +1,6 @@
 package jabilee.ui;
 
+import jabilee.meals.Meal;
 import font.Fonts;
 import javax.swing.JLabel;
 

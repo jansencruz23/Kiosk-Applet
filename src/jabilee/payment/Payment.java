@@ -1,6 +1,9 @@
-package jabilee.ui;
+package jabilee.payment;
 
 import font.Fonts;
+import jabilee.openingscreen.OpeningScreen;
+import jabilee.ui.JabileeUI;
+import jabilee.helpers.Printer;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,9 +37,6 @@ public class Payment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	ImageIcon image = new ImageIcon(getClass().getResource("/resources/logo.png"));
-        setIconImage(image.getImage());
-    	
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReceipt = new javax.swing.JTextArea();
@@ -69,6 +69,7 @@ public class Payment extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Jabilee Cashier");
         setMinimumSize(new java.awt.Dimension(700, 570));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
@@ -363,6 +364,9 @@ public class Payment extends javax.swing.JFrame {
         window.clearTotal();
         window.clearOrders();
 
+        new OpeningScreen().setVisible(true);
+        
+        window.dispose();
         this.dispose();
     }
     
@@ -375,7 +379,7 @@ public class Payment extends javax.swing.JFrame {
             
             return amount >= total;
         }
-        catch(Exception ex) {
+        catch(NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
         

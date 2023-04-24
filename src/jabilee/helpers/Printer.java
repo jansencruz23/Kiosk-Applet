@@ -1,4 +1,4 @@
-package jabilee.ui;
+package jabilee.helpers;
 
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;

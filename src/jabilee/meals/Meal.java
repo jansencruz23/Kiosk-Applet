@@ -1,4 +1,4 @@
-package jabilee.ui;
+package jabilee.meals;
 
 import font.Fonts; 
 import javax.swing.ImageIcon;

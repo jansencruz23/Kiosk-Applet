@@ -1,7 +1,9 @@
-package jabilee.ui;
+package jabilee.meals;
 
+import jabilee.meals.Meal;
 import font.Fonts;
 import component.CirclePanel;
+import jabilee.ui.JabileeUI;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -60,6 +62,7 @@ public class CreateItem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Jabilee Create Item");
         setBackground(new java.awt.Color(255, 255, 255));
+        setIconImage(new ImageIcon(getClass().getResource("/resources/logo.png")).getImage());
         setMinimumSize(new java.awt.Dimension(380, 300));
         setResizable(false);
         setSize(new java.awt.Dimension(400, 300));

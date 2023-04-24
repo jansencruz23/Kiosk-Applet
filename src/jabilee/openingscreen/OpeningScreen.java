@@ -9,7 +9,9 @@ import javax.swing.Timer;
 public class OpeningScreen extends javax.swing.JFrame {
 
     ImageIcon[] images = new ImageIcon[3];
-    int currentIndex;
+    float[] fontSizes = new float[2];
+    int currentImageIndex;
+    int currentFontSizeIndex;
     
     public OpeningScreen() {
         
@@ -17,6 +19,7 @@ public class OpeningScreen extends javax.swing.JFrame {
         initImages();
         setLocationRelativeTo(null);
         displayOpeningScreen();
+        displayLabelAnimation();
     }
 
     @SuppressWarnings("unchecked")
@@ -25,11 +28,12 @@ public class OpeningScreen extends javax.swing.JFrame {
 
         panelBg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblClick = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome To Jabilee");
+        setIconImage(new ImageIcon(getClass().getResource("/resources/logo.png")).getImage());
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -53,11 +57,11 @@ public class OpeningScreen extends javax.swing.JFrame {
         });
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(Fonts.getJelleeFont(24f));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CLICK ANYWHERE TO BEGIN!");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
+        lblClick.setFont(Fonts.getJelleeFont(24f));
+        lblClick.setForeground(new java.awt.Color(255, 255, 255));
+        lblClick.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClick.setText("CLICK ANYWHERE TO BEGIN!");
+        jPanel1.add(lblClick, java.awt.BorderLayout.CENTER);
 
         panelBg.add(jPanel1);
         jPanel1.setBounds(0, 442, 1000, 120);
@@ -83,8 +87,22 @@ public class OpeningScreen extends javax.swing.JFrame {
         
         new Timer(3000, (e) -> {
             
-            currentIndex = (currentIndex + 1) % images.length;
-            lblBg.setIcon(images[currentIndex]);
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            lblBg.setIcon(images[currentImageIndex]);
+        }).start();
+    }
+    
+    private void displayLabelAnimation() {
+        
+        fontSizes[0] = 24f;
+        fontSizes[1] = 26f;
+        
+        lblClick.setFont(Fonts.getJelleeFont(fontSizes[0]));
+        
+        new Timer(500, (e) -> {
+            
+            currentFontSizeIndex = (currentFontSizeIndex + 1) % fontSizes.length;
+            lblClick.setFont(Fonts.getJelleeFont(fontSizes[currentFontSizeIndex]));
         }).start();
     }
     
@@ -102,8 +120,6 @@ public class OpeningScreen extends javax.swing.JFrame {
         new JabileeUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_screenClicked
-
-    
     
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -133,9 +149,9 @@ public class OpeningScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBg;
+    private javax.swing.JLabel lblClick;
     private javax.swing.JPanel panelBg;
     // End of variables declaration//GEN-END:variables
 }
